@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tz %}
 {% block content %}
         <!-- content begin -->
         <div class="no-bottom no-top zebra" id="content">
@@ -12,7 +13,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-									<h1>Cars</h1>
+									<h1>Kiralık Araçlar</h1>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -20,12 +21,10 @@
                     </div>
             </section>
             <!-- section close -->
-
             <section id="section-cars">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3">
-                            
                             <div class="item_filter_group">
                                 <h4>Vehicle Type</h4>
                                 <div class="de_form">
@@ -185,36 +184,51 @@
                         <div class="col-lg-9">
                             <div class="row">
 
-                                <div class="col-xl-4 col-lg-6">
-                                    <div class="de-item mb30">
-                                        <div class="d-img">
-                                            <img src="images/cars/jeep-renegade.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="d-info">
-                                            <div class="d-text">
-                                                <h4>Jeep Renegade</h4>
-                                                <div class="d-item_like">
-                                            <i class="fa fa-heart"></i><span>25</span>
-                                        </div>
-                                        <div class="d-atr-group">
-                                                    <span class="d-atr"><img src="images/icons/1.svg" alt="">5</span>
-                                                    <span class="d-atr"><img src="images/icons/2.svg" alt="">2</span>
-                                                    <span class="d-atr"><img src="images/icons/3.svg" alt="">4</span>
-                                                    <span class="d-atr"><img src="images/icons/4.svg" alt="">SUV</span>
-                                                </div>
-                                                <div class="d-price">
-                                                    Daily rate from <span>$265</span>
-                                                    <a class="btn-main" href="car-single.html">Rent Now</a>
+                                {% for car in cars %}
+                                    <div class="col-lg-12">
+                                        <div class="de-item-list mb30">
+                                            <div class="d-img">
+                                                <img src="{{car.image1}}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="d-info">
+                                                <div class="d-text">
+                                                    <h4>{{car.brand}}&nbsp;{{car.model}}</h4>
+                                                    <div class="d-atr-group">
+                                                        <ul class="d-atr">
+                                                            <li><span>Koltuk:</span>{{car.number_of_person}}</li>
+                                                            <li><span>Bagaj:</span>{{car.luggage_volume}} L</li>
+                                                            <li><span>Kapı:</span>{{car.number_of_doors}}</li>
+                                                            <li><span>Yakıt:</span>{{car.fuel_type}}</li>
+                                                            <li><span>Vites:</span>{{car.transmission_type}}</li>
+                                                            <li><span>Km:</span>{{car.km}}</li>
+                                                            <li><span>Renk:</span>{{car.color}}</li>
+                                                            <li><span>Kasa:</span>{{car.category}}</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="d-price">
+                                                Günlük Ücret <span>{{car.price_per_day}} ₺</span>
+                                                {% if car.is_damaged %}
+                                                    <a class="btn-main" style="background-color: red;">Kazalı</a>
+                                                {% else %}
+                                                    <a class="btn-main" href="{% url 'car_detail' car.slug %}">Kirala</a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+			
+			
         </div>
+        <!-- content close -->
+
         <a href="#" id="back-to-top"></a>
 {% endblock %}

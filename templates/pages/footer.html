@@ -81,6 +81,30 @@
 <script src="{% static 'js/designesia.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgiM7ogCAA2Y5pgSk2KXZfxF5S_1jsptA&amp;libraries=places&amp;callback=initPlaces" async="" defer=""></script>
 
-</body>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/i18n/datepicker-tr.js"></script>
+<script src="{% static 'js/datepicker-init.js' %}"></script>
+<script src="{% static 'js/date-picker.js' %}"></script>
 
+<script>
+    var bookedDates = {{ booked_dates_json|safe }};
+
+    $(document).ready(function() {
+        $("#date-pickerr, #date-pickerr-2").datepicker({
+            minDate: 0,
+            dateFormat: "dd MM yy",
+            regional: "tr",
+            beforeShowDay: function(date) {
+                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                if (bookedDates.indexOf(dateString) > -1) {
+                    return [false, "booked-date", "Bu tarih müsait değil"]; // Pasif hale getir ve "booked-date" sınıfını ekleyerek kırmızı renk yap
+                } else {
+                    return [true, "", ""];
+                }
+            }
+        });
+    });
+</script>
+
+</body>
 </html>

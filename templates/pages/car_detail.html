@@ -7,12 +7,12 @@
             
             <!-- section begin -->
             <section id="subheader" class="jarallax text-light">
-                <img src="images/background/2.jpg" class="jarallax-img" alt="">
+                <img src="{% static 'images/background/2.jpg' %}" class="jarallax-img" alt="">
                     <div class="center-y relative text-center">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-									<h1>Vehicle Fleet</h1>
+									<h1>Araç Filomuz</h1>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -21,91 +21,87 @@
             </section>
             <!-- section close -->
 
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
             <section id="section-car-details">
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-lg-6">
                             <div id="slider-carousel" class="owl-carousel">
                                 <div class="item">
-                                    <img src="images/car-single/1.jpg" alt="">
+                                    <img src="{{car.image1}}" alt="">
                                 </div>
                                 <div class="item">
-                                    <img src="images/car-single/2.jpg" alt="">
+                                    <img src="{{car.image2}}" alt="">
                                 </div>
                                 <div class="item">
-                                    <img src="images/car-single/3.jpg" alt="">
+                                    <img src="{{car.image3}}" alt="">
                                 </div>
                                 <div class="item">
-                                    <img src="images/car-single/4.jpg" alt="">
+                                    <img src="{{car.image4}}" alt="">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-3">
-                            <h3>BMW M2 2020</h3>
+                            <h3>{{car.brand}}&nbsp;{{car.model}}</h3>
                             <p>The BMW M2 is the high-performance version of the 2 Series 2-door coupé. The first generation of the M2 is the F87 coupé and is powered by turbocharged.</p>
 
                             <div class="spacer-10"></div>
 
-                            <h4>Specifications</h4>
+                            <h4>Teknik Özellikler</h4>
                             <div class="de-spec">
                                 <div class="d-row">
-                                    <span class="d-title">Body</span>
-                                    <spam class="d-value">Sedan</spam>
+                                    <span class="d-title">Kasa</span>
+                                    <spam class="d-value">{{car.category}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Seat</span>
-                                    <spam class="d-value">2 seats</spam>
+                                    <span class="d-title">Koltuk</span>
+                                    <spam class="d-value">{{car.number_of_person}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Door</span>
-                                    <spam class="d-value">2 doors</spam>
+                                    <span class="d-title">Kapı</span>
+                                    <spam class="d-value">{{car.number_of_doors}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Luggage</span>
-                                    <spam class="d-value">150</spam>
+                                    <span class="d-title">Bagaj</span>
+                                    <spam class="d-value">{{car.luggage_volume}} L</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Fuel Type</span>
-                                    <spam class="d-value">Hybird</spam>
+                                    <span class="d-title">Yakıt</span>
+                                    <spam class="d-value">{{car.fuel_type}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Engine</span>
-                                    <spam class="d-value">3000</spam>
+                                    <span class="d-title">Km</span>
+                                    <spam class="d-value">{{car.km}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Year</span>
-                                    <spam class="d-value">2020</spam>
+                                    <span class="d-title">Yıl</span>
+                                    <spam class="d-value">{{car.year}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Mileage</span>
-                                    <spam class="d-value">200</spam>
+                                    <span class="d-title">Km</span>
+                                    <spam class="d-value">{{car.km}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Transmission</span>
-                                    <spam class="d-value">Automatic</spam>
+                                    <span class="d-title">Vites</span>
+                                    <spam class="d-value">{{car.transmission_type}}</spam>
                                 </div>
                                 <div class="d-row">
-                                    <span class="d-title">Drive</span>
-                                    <spam class="d-value">4WD</spam>
-                                </div>
-                                <div class="d-row">
-                                    <span class="d-title">Fuel Economy</span>
-                                    <spam class="d-value">18.5</spam>
-                                </div>
-                                <div class="d-row">
-                                    <span class="d-title">Exterior Color</span>
-                                    <spam class="d-value">Blue Metalic</spam>
-                                </div>
-                                <div class="d-row">
-                                    <span class="d-title">Interior Color</span>
-                                    <spam class="d-value">Black</spam>
+                                    <span class="d-title">Renk</span>
+                                    <spam class="d-value">{{car.color}}</spam>
                                 </div>
                             </div>
 
                             <div class="spacer-single"></div>
 
-                            <h4>Features</h4>
+                            <h4>Özellikler</h4>
                             <ul class="ul-style-2">
                                 <li>Bluetooth</li>
                                 <li>Multimedia Player</li>
@@ -116,20 +112,21 @@
 
                         <div class="col-lg-3">
                             <div class="de-price text-center">
-                                Daily rate
-                                <h3>$265</h3>
+                                Günlük Ücret
+                                <h3>{{car.price_per_day}} ₺</h3>
                             </div>
                             <div class="spacer-30"></div>
                             <div class="de-box mb25">
-                                <form name="contactForm" id='contact_form' method="post">
-                                    <h4>Booking this car</h4>
+                                <form method="post" action="{% url 'car_detail' slug=car.slug %}">
+                                    {% csrf_token %}
+                                    <h4>Bu Arabayı Kiralayın</h4>
 
                                     <div class="spacer-20"></div>
 
                                     <div class="row">
                                         <div class="col-lg-12 mb20">
-                                            <h5>Pick Up Location</h5>
-                                            <input type="text" name="PickupLocation" onfocus="geolocate()" placeholder="Enter your pickup location" id="autocomplete" autocomplete="off" class="form-control">
+                                            <h5>Alış Yeriniz</h5>
+                                            <input type="text" name="pickup_location" onfocus="geolocate()" placeholder="Alış konumunuzu girin" id="autocomplete" autocomplete="off" class="form-control" value="{{ car.pickup_location }}">
 
                                             <div class="jls-address-preview jls-address-preview--hidden">
                                                 <div class="jls-address-preview__header">
@@ -138,8 +135,8 @@
                                         </div>
 
                                         <div class="col-lg-12 mb20">
-                                            <h5>Drop Off Location</h5>
-                                            <input type="text" name="DropoffLocation" onfocus="geolocate()" placeholder="Enter your dropoff location" id="autocomplete2" autocomplete="off" class="form-control">
+                                            <h5>İade Yeriniz</h5>
+                                            <input type="text" name="dropoff_location" onfocus="geolocate()" placeholder="Teslim konumunuzu girin" id="autocomplete2" autocomplete="off" class="form-control" value="{{ car.dropoff_location }}">
 
                                             <div class="jls-address-preview jls-address-preview--hidden">
                                                 <div class="jls-address-preview__header">
@@ -148,11 +145,11 @@
                                         </div>
 
                                         <div class="col-lg-12 mb20">
-                                            <h5>Pick Up Date & Time</h5>
+                                            <h5>Teslim Alma Tarihi ve Saati</h5>
                                             <div class="date-time-field">
-                                                <input type="text" id="date-picker" name="Pick Up Date" value="">
+                                                <input type="text" id="date-pickerr" name="Pick Up Date" placeholder="Tıkla" autocomplete="off">
                                                 <select name="Pick Up Time" id="pickup-time">
-                                                    <option selected disabled value="Select time">Time</option>
+                                                    <option selected disabled value="Select time">Saat</option>
                                                     <option value="00:00">00:00</option>
                                                     <option value="00:30">00:30</option>
                                                     <option value="01:00">01:00</option>
@@ -206,11 +203,11 @@
                                         </div>
 
                                         <div class="col-lg-12 mb20">
-                                            <h5>Return Date & Time</h5>
+                                            <h5>Teslim Etme Tarihi ve Saati</h5>
                                             <div class="date-time-field">
-                                                <input type="text" id="date-picker-2" name="Collection Date" value="">
+                                                <input type="text" id="date-pickerr-2" name="Collection Date" value="" placeholder="Tıkla" autocomplete="off">
                                                 <select name="Collection Time" id="collection-time">
-                                                    <option selected disabled value="Select time">Time</option>
+                                                    <option selected disabled value="Select time">Saat</option>
                                                     <option value="00:00">00:00</option>
                                                     <option value="00:30">00:30</option>
                                                     <option value="01:00">01:00</option>
@@ -262,9 +259,10 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        
                                     </div>
 
-                                    <input type='submit' id='send_message' value='Book Now' class="btn-main btn-fullwidth">
+                                    <input type='submit' id='send_message' value='Kirala' class="btn-main btn-fullwidth">
 
                                     <div class="clearfix"></div>
                                     
@@ -272,15 +270,12 @@
                             </div>
 
                             <div class="de-box">
-                                <h4>Share</h4>
+                                <h4>Paylaş</h4>
                                 <div class="de-color-icons">
                                     <span><i class="fa fa-twitter fa-lg"></i></span>
+                                    <span><i class="fa fa-instagram fa-lg"></i></span>
                                     <span><i class="fa fa-facebook fa-lg"></i></span>
-                                    <span><i class="fa fa-reddit fa-lg"></i></span>
                                     <span><i class="fa fa-linkedin fa-lg"></i></span>
-                                    <span><i class="fa fa-pinterest fa-lg"></i></span>
-                                    <span><i class="fa fa-stumbleupon fa-lg"></i></span>
-                                    <span><i class="fa fa-delicious fa-lg"></i></span>
                                     <span><i class="fa fa-envelope fa-lg"></i></span>
                                 </div>
                             </div>
@@ -291,8 +286,6 @@
 			
 			
         </div>
-        <!-- content close -->
-
         <a href="#" id="back-to-top"></a>
-        
+
 {% endblock %}

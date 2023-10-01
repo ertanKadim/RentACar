@@ -38,6 +38,11 @@
 
 }
 
+.booked-date a {
+    background-color: red !important;
+    color: white !important;
+}
+
 .g-custom{
     --bs-gutter-x: 30px;
     --bs-gutter-y: 30px;
@@ -3452,6 +3457,10 @@ a.btn-main:hover,
     box-shadow: 2px 2px 20px 0px rgba(var(--primary-color-rgb), 0.5);
 }
 
+.damaged {
+    background-color: red;
+    color: white;
+}
 
 a.btn-black:hover,
 .btn-black:hover {

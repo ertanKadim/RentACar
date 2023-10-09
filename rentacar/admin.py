@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Car, Category, Booking
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['category', 'brand', 'model', 'year', 'is_available', 'is_damaged', 'price_per_day', 'start_date', 'pickup_location', 'return_date', 'dropoff_location']
+    list_display = ['category', 'brand', 'model', 'year', 'is_available', 'is_damaged', 'price_per_day']
     list_filter = ['category']
     list_display_links = ['brand', 'model', 'year']
 

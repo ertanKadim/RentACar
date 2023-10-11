@@ -6,17 +6,23 @@ import datetime
 import json
 
 def index(request):
-    return render(request, 'pages/index.html')
+    title = 'Anasayfa'
+    return render(request, 'pages/index.html', {
+        'title': title,
+    })
 
 def cars(request):
+    title = 'Kiralık Araçlar'
     cars = Car.objects.filter()
     return render(request, 'pages/cars.html', {
+        'title': title,
         'cars': cars,
         'now': timezone.now(),
     })
 
 def car_detail(request, slug):
     car = get_object_or_404(Car, slug=slug)
+    title = f"{car.brand} {car.model}"
 
     # Kiralanmış tarihleri al
     booked_dates = Booking.objects.filter(car=car).values_list('start_date', 'return_date', flat=False)
@@ -63,6 +69,49 @@ def car_detail(request, slug):
         'now': timezone.now(),
         'car_id': car.id,
         'booked_dates_json': json.dumps(booked_dates_list),
+        'title': title,
+    })
+
+def blog(request):
+    title = 'Blog'
+    return render(request, 'pages/blog.html', {
+        'title': title,
+    })
+
+def blog_detail(request, slug):
+    title = 'Blog'
+    return render(request, 'pages/blog_detail.html', {
+        'title': title,
+    })
+
+def contact(request):
+    title = 'İletişim'
+    return render(request, 'pages/contact.html', {
+        'title': title,
+    })
+
+def about(request):
+    title = 'Hakkımızda'
+    return render(request, 'pages/about.html', {
+        'title': title,
+    })
+
+def myaccount(request):
+    title = 'Hesabım'
+    return render(request, 'pages/myaccount.html', {
+        'title': title,
+    })
+
+def login(request):
+    title = 'Giriş Yap'
+    return render(request, 'pages/login.html', {
+        'title': title,
+    })
+
+def register(request):
+    title = 'Kayıt Ol'
+    return render(request, 'pages/register.html', {
+        'title': title,
     })
 
 

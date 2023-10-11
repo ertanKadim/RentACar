@@ -3,7 +3,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Rentaly - Multipurpose Vehicle Car Rental Website Template</title>
+    <title>{% block title %} {{ title }} | Anatolia Wheels {% endblock %}</title>
     <link rel="icon" href="{% static 'images/icon.png' %}" type="image/gif" sizes="16x16">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,8 +36,8 @@
                     <div class="topbar-left xs-hide">
                         <div class="topbar-widget">
                             <div class="topbar-widget"><a href="#"><i class="fa fa-phone"></i>+208 333 9296</a></div>
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@rentaly.com</a></div>
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 08.00 - 18.00</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@anatoliawheels.com</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Pzt - Pzr 08.00 - 18.00</a></div>
                         </div>
                     </div>
                 
@@ -61,9 +61,9 @@
                                 <div class="de-flex-col">
                                     <!-- logo begin -->
                                     <div id="logo">
-                                        <a href="index.html">
-                                            <img class="logo-1" src="images/logo-light.png" alt="">
-                                            <img class="logo-2" src="images/logo.png" alt="">
+                                        <a href="{% url 'index' %}">
+                                            <img class="logo-1" src="{% static 'images/logo-light.png' %}" alt="">
+                                            <img class="logo-2" src="{% static 'images/logo.png' %}" alt="">
                                         </a>
                                     </div>
                                     <!-- logo close -->
@@ -71,24 +71,26 @@
                             </div>
                             <div class="de-flex-col header-col-mid">
                                 <ul id="mainmenu">
-                                    <li><a class="menu-item" href="index.html">Home</a></li>
-                                    <li><a class="menu-item" href="cars.html">Cars</a></li>
-                                    <li><a class="menu-item" href="about.html">About Us</a></li>
-                                    <li><a class="menu-item" href="contact.html">Contact</a></li>
-                                    <li><a class="menu-item" href="news-grid-right-sidebar.html">News</a></li>
-                                    <li><a class="menu-item" href="account-dashboard.html">My Account</a>
+                                    <li><a class="menu-item" href="{% url 'index' %}">Anasayfa</a></li>
+                                    <li><a class="menu-item" href="{% url 'cars' %}">Araçlar</a></li>
+                                    <li><a class="menu-item" href="{% url 'about' %}">Hakkımızda</a></li>
+                                    <li><a class="menu-item" href="{% url 'contact' %}">İletişim</a></li>
+                                    <li><a class="menu-item" href="{% url 'blog' %}">Blog</a></li>
+                                    <!-- <li><a class="menu-item" href="account-dashboard.html">Hesabım</a>
                                         <ul>
                                             <li><a class="menu-item" href="account-dashboard.html">Dashboard</a></li>
                                             <li><a class="menu-item" href="account-profile.html">My Profile</a></li>
                                             <li><a class="menu-item" href="account-booking.html">My Orders</a></li>
                                             <li><a class="menu-item" href="account-favorite.html">My Favorite Cars</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
+                            
+                            
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
-                                    <a href="login.html" class="btn-main">Sign In</a>
+                                    <a href="{% url 'login' %}" class="btn-main">Giriş Yap</a>
                                     <span id="menu-btn"></span>
                                 </div>
                             </div>

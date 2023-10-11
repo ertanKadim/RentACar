@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- content begin -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            
+            <!-- section begin -->
+            <section id="subheader" class="jarallax text-light">
+                <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
+                    <div class="center-y relative text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+									<h1>İletişim</h1>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- section close -->
+            
+
+            <section aria-label="section">
+                <div class="container">
+						<div class="row g-custom-x">
+							
+							<div class="col-lg-8 mb-sm-30">
+
+							 <h3>Herhangi bir sorunuz var mı?</h3>
+							
+        						<form name="contactForm" id="contact_form" class="form-border" method="post" action="#">
+                                        <div class="row">
+                                            <div class="col-md-4 mb10">
+                                                <div class="field-set">
+                                                    <input type="text" name="Name" id="name" class="form-control" placeholder="İsim - Soyisim" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb10">
+                                                <div class="field-set">
+                                                    <input type="text" name="Email" id="email" class="form-control" placeholder="E-Posta" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb10">
+                                                <div class="field-set">
+                                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Telefon" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="field-set mb20">
+                                            <textarea name="message" id="message" class="form-control" placeholder="Mesaj" required></textarea>
+                                        </div>
+                                        <div class="g-recaptcha" data-sitekey="copy-your-site-key-here"></div>
+                                        <div id='submit' class="mt20">
+                                            <input type='submit' id='send_message' value='Gönder' class="btn-main">
+                                        </div>
+
+                                        <div id="success_message" class='success'>
+                                            Mesajınız başarıyla gönderildi. Daha fazla mesaj göndermek istiyorsanız bu sayfayı yenileyin.
+                                        </div>
+                                        <div id="error_message" class='error'>
+                                            Formunuzu gönderirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya iletişim bilgilerimizi kullanarak bizimle iletişime geçin.
+                                        </div>
+                                    </form>
+						</div>
+						
+						<div class="col-lg-4">
+
+							<div class="de-box mb30">
+								<h4>Ofis</h4>
+								<address class="s1">
+									<span><i class="id-color fa fa-map-marker fa-lg"></i>08 W 36th St, New York, NY 10001</span>
+									<span><i class="id-color fa fa-phone fa-lg"></i>+90 000 000 00 00</span>
+									<span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:contact@example.com">contact@anatoliawheels.com</a></span>
+									<!-- <span><i class="id-color fa fa-file-pdf-o fa-lg"></i><a href="#">Download Brochure</a></span> -->
+								</address>
+							</div>
+
+
+							<div class="de-box mb30">
+								<h4>Ofis - 2</h4>
+								<address class="s1">
+									<span><i class="fa fa-map-marker fa-lg"></i>100 Mainstreet Center, Sydney</span>
+									<span><i class="fa fa-phone fa-lg"></i>+90 000 000 00 00</span>
+									<span><i class="fa fa-envelope-o fa-lg"></i><a href="mailto:contact@example.com">contact@anatoliawheels.com</a></span>
+									<!-- <span><i class="fa fa-file-pdf-o fa-lg"></i><a href="#">Download Brochure</a></span> -->
+								</address>
+							</div>
+
+						</div>
+							
+						</div>
+					</div>
+
+            </section>
+
+        </div>
+        <!-- content close -->
+
+        <a href="#" id="back-to-top"></a>
+        
+{% endblock %}

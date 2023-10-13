@@ -50,20 +50,24 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <h3>{{car.brand}}&nbsp;{{car.model}}</h3>
-                            <p>The BMW M2 is the high-performance version of the 2 Series 2-door coupé. The first generation of the M2 is the F87 coupé and is powered by turbocharged.</p>
+                            <h3 style="color: #20cc14;">{{car.brand}}&nbsp;{{car.model}}</h3>
+                            <!-- <p>The BMW M2 is the high-performance version of the 2 Series 2-door coupé. The first generation of the M2 is the F87 coupé and is powered by turbocharged.</p> -->
 
                             <div class="spacer-10"></div>
 
                             <h4>Teknik Özellikler</h4>
                             <div class="de-spec">
                                 <div class="d-row">
+                                    <span class="d-title">Araç</span>
+                                    <spam class="d-value">{{car.vehicle_type}}</spam>
+                                </div>
+                                <div class="d-row">
                                     <span class="d-title">Kasa</span>
-                                    <spam class="d-value">{{car.category}}</spam>
+                                    <spam class="d-value">{{car.case_type}}</spam>
                                 </div>
                                 <div class="d-row">
                                     <span class="d-title">Koltuk</span>
-                                    <spam class="d-value">{{car.number_of_person}}</spam>
+                                    <spam class="d-value">{{car.number_of_seats}}</spam>
                                 </div>
                                 <div class="d-row">
                                     <span class="d-title">Kapı</span>
@@ -84,10 +88,6 @@
                                 <div class="d-row">
                                     <span class="d-title">Yıl</span>
                                     <spam class="d-value">{{car.year}}</spam>
-                                </div>
-                                <div class="d-row">
-                                    <span class="d-title">Km</span>
-                                    <spam class="d-value">{{car.km}}</spam>
                                 </div>
                                 <div class="d-row">
                                     <span class="d-title">Vites</span>

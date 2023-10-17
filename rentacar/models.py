@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from autoslug import AutoSlugField
+from django.core.validators import MinValueValidator
+import uuid
 
 def validate_year(value):
     current_year = timezone.now().year
@@ -95,24 +97,32 @@ class Car(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Marka")
     series = models.ForeignKey(Series, on_delete=models.CASCADE, verbose_name="Seri")
     model = models.ForeignKey(Model, on_delete=models.CASCADE, verbose_name="Model")
-    year = models.IntegerField(validators=[validate_year], verbose_name="Yıl")
+    year = models.PositiveIntegerField(validators=[validate_year], verbose_name="Yıl")
     is_available = models.BooleanField(default=False, verbose_name="Kiralık Mı?")
     is_damaged = models.BooleanField(default=False, verbose_name="Hasarlı Mı?")
 
     # Teknik Özellikler
     vehicle_type = models.ForeignKey(VehicleType, on_delete=models.SET_NULL, null=True, verbose_name="Araç Tipi")
     case_type = models.ForeignKey(CaseType, on_delete=models.SET_NULL, null=True, verbose_name="Kasa Tipi")
-    km = models.IntegerField(verbose_name="Kilometre")
+    km = models.PositiveBigIntegerField(
+        verbose_name="Kilometre"
+    )
     fuel_type = models.ForeignKey(FuelType, on_delete=models.SET_NULL, null=True, verbose_name="Yakıt Türü")
     transmission_type = models.ForeignKey(TransmissionType, on_delete=models.SET_NULL, null=True, verbose_name="Vites Türü")
-    number_of_doors = models.CharField(max_length=2, verbose_name="Kapı Sayısı")
-    number_of_seats = models.CharField(max_length=2, null=True, verbose_name="Koltuk Sayısı")
-    luggage_volume = models.CharField(max_length=50, verbose_name="Bagaj Hacmi")
+    number_of_doors = models.PositiveSmallIntegerField(verbose_name="Kapı Sayısı")
+    number_of_seats = models.PositiveSmallIntegerField(null=True, verbose_name="Koltuk Sayısı")
+    luggage_volume = models.PositiveIntegerField(verbose_name="Bagaj Hacmi")
+
     color = models.CharField(max_length=50, verbose_name="Renk")
     # number_of_person = models.CharField(max_length=2, verbose_name="Kişi Sayısı")
 
     # Kiralama Bilgileri
-    price_per_day = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Günlük Fiyat")
+    price_per_day = models.DecimalField(
+        max_digits=9,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+        verbose_name="Günlük Fiyat"
+    )
     # pickup_location = models.CharField(null=True, blank=True, max_length=255, verbose_name="Alış Yeri")
     # dropoff_location = models.CharField(null=True, blank=True, max_length=255, verbose_name="Teslim Yeri")
     # start_date = models.DateField(null=True, blank=True, verbose_name="Kiralanma Tarihi")
@@ -126,15 +136,19 @@ class Car(models.Model):
     image3 = models.URLField(null=True, blank=True, verbose_name="3. Fotoğrak Linki")
     image4 = models.URLField(null=True, blank=True, verbose_name="4. Fotoğrak Linki")
 
-    plate_number = models.CharField(max_length=10, unique=True, verbose_name="Plaka Numarası", null=True, blank=True)
+    plate_number = models.CharField(max_length=11, unique=True, verbose_name="Plaka Numarası", null=True, blank=True)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     slug = AutoSlugField(populate_from='get_slug', unique=True, verbose_name="Slug")
 
+    created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Oluşturulma Tarihi")
+    updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name="Güncellenme Tarihi")
+
     def get_slug(self):
-        slug = f"{self.brand.name}-{self.series.name}-{self.model.name}-{self.year}-{self.id}"  # Adjusted to include series
+        slug = f"{self.brand.name}-{self.series.name}-{self.model.name}-{self.year}-{self.unique_id}"
         return slug
 
     def __str__(self):
-        return f"{self.brand} {self.series} {self.model} ({self.year})"  # Adjusted to include series
+        return f"{self.brand} {self.series} {self.model} ({self.year})"
     
     class Meta:
         verbose_name = "Araba"

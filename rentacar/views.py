@@ -7,6 +7,9 @@ import json
 
 def index(request):
     title = 'Anasayfa'
+
+    cars = Car.objects.filter()
+
     return render(request, 'pages/index.html', {
         'title': title,
     })

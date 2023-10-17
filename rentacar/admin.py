@@ -16,4 +16,17 @@ admin.site.register(FuelType)
 admin.site.register(TransmissionType)
 admin.site.register(VehicleType)
 admin.site.register(CaseType)
-admin.site.register(Booking)
+
+
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['car_with_plate_number', 'start_date', 'return_date']
+    list_display_links = ['car_with_plate_number', 'start_date', 'return_date']
+
+    def car_with_plate_number(self, obj):
+        return f"{obj.car} - {obj.car.plate_number}"
+    car_with_plate_number.short_description = 'Araç - Plaka'
+
+    class Meta:
+        model = Booking
+
+admin.site.register(Booking, BookingAdmin)

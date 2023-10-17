@@ -123,12 +123,6 @@ class Car(models.Model):
         validators=[MinValueValidator(0)],
         verbose_name="Günlük Fiyat"
     )
-    # pickup_location = models.CharField(null=True, blank=True, max_length=255, verbose_name="Alış Yeri")
-    # dropoff_location = models.CharField(null=True, blank=True, max_length=255, verbose_name="Teslim Yeri")
-    # start_date = models.DateField(null=True, blank=True, verbose_name="Kiralanma Tarihi")
-    # start_time = models.TimeField(null=True, blank=True, verbose_name="Kiralanma Saati")
-    # return_date = models.DateField(null=True, blank=True, verbose_name="Teslim Tarihi")
-    # return_time = models.TimeField(null=True, blank=True, verbose_name="Teslim Saati")
 
     # Görseller
     image1 = models.URLField(null=True, blank=True, verbose_name="1. Fotoğrak Linki")
@@ -165,17 +159,17 @@ class Booking(models.Model):
     dropoff_location = models.CharField(blank=True, max_length=255, verbose_name="Teslim Yeri")
 
     @classmethod
-    def is_car_available(cls, car, start_date, return_date): # end_date yerine return_date
+    def is_car_available(cls, car, start_date, return_date):
         overlapping_bookings = cls.objects.filter(
             car=car,
             start_date__lte=return_date,
-            return_date__gte=start_date # end_date__gte yerine return_date__gte
+            return_date__gte=start_date
         ).exists()
         return not overlapping_bookings
 
 
     def __str__(self):
-        return f"Rezervasyon - {self.car} - {self.start_date} {self.start_time} - {self.return_date} {self.return_time}"
+        return f"{self.car} - {self.car.plate_number} - {self.start_date} {self.start_time} - {self.return_date} {self.return_time}"
     
     class Meta:
         verbose_name = "Rezervasyon"

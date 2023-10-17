@@ -93,7 +93,7 @@
             beforeShowDay: function(date) {
                 var dateString = $.datepicker.formatDate('yy-mm-dd', date);
                 if (bookedDates.indexOf(dateString) > -1) {
-                    return [false, "booked-date", "Bu tarih müsait değil"]; // Pasif hale getir ve "booked-date" sınıfını ekleyerek kırmızı renk yap
+                    return [false, "booked-date", "Bu tarih müsait değil"];
                 } else {
                     return [true, "", ""];
                 }

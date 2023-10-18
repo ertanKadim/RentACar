@@ -8,10 +8,11 @@ import json
 def index(request):
     title = 'Anasayfa'
 
-    cars = Car.objects.filter()
+    cars = list(Car.objects.order_by('-created_at')[:5])
 
     return render(request, 'pages/index.html', {
         'title': title,
+        'cars': cars,
     })
 
 def cars(request):

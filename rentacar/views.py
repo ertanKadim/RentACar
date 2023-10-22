@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.contrib import messages
 import datetime
 import json
+from django.contrib.auth import authenticate, login, logout
+from .forms import LoginForm, RegisterForm
 
 def index(request):
     title = 'Anasayfa'
@@ -100,23 +102,67 @@ def about(request):
         'title': title,
     })
 
-def myaccount(request):
+def my_account(request):
     title = 'Hesabım'
     return render(request, 'pages/myaccount.html', {
         'title': title,
     })
 
-def login(request):
-    title = 'Giriş Yap'
-    return render(request, 'pages/login.html', {
-        'title': title,
-    })
-
 def register(request):
     title = 'Kayıt Ol'
-    return render(request, 'pages/register.html', {
-        'title': title,
-    })
+    msg = None
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            msg = 'Kayıt başarılı!'
+            return redirect('user_login')
+        else:
+            errors = form.errors
+            print(errors)  # Bu satır hataları konsola yazdırır
+            msg = 'Kayıt başarısız!'
+    else:
+        form = RegisterForm()
+    return render(request, 'pages/register.html', {'form': form, 'msg': msg, 'title': title})
+
+def user_login(request):
+    title = 'Giriş Yap'
+    
+    if request.user.is_authenticated:
+        # Kullanıcı zaten giriş yapmışsa, istediğiniz sayfaya yönlendirin
+        if request.user.is_customer:
+            return redirect('index')
+        elif request.user.is_admin:
+            # return redirect('admin:index')
+            return redirect('index')
+    
+    form = LoginForm(request.POST or None)
+    msg = None
+
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                if user.is_customer:  # Normal kullanıcı
+                    return redirect('index')
+                elif user.is_admin:  # Admin kullanıcı
+                    return redirect('admin:index')
+                    # return redirect('index')
+            else:
+                messages.error(request, 'Kullanıcı adı veya şifre hatalı!')
+        else:
+            msg = 'Hatalı form!'
+    
+    return render(request, 'pages/login.html', {'form': form, 'msg': msg, 'title': title})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')
 
 
 

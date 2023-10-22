@@ -76,24 +76,25 @@
                                     <li><a class="menu-item" href="{% url 'about' %}">Hakkımızda</a></li>
                                     <li><a class="menu-item" href="{% url 'contact' %}">İletişim</a></li>
                                     <li><a class="menu-item" href="{% url 'blog' %}">Blog</a></li>
-                                    <!-- <li><a class="menu-item" href="account-dashboard.html">Hesabım</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="account-dashboard.html">Dashboard</a></li>
-                                            <li><a class="menu-item" href="account-profile.html">My Profile</a></li>
-                                            <li><a class="menu-item" href="account-booking.html">My Orders</a></li>
-                                            <li><a class="menu-item" href="account-favorite.html">My Favorite Cars</a></li>
-                                        </ul>
-                                    </li> -->
+                                    {% if user.is_customer %}
+                                        <li><a class="menu-item" href="{% url 'my_account' %}">Hesabım</a></li>
+                                    {% elif user.is_admin %}
+                                        <li><a class="menu-item" href="{% url 'admin:index' %}" target="_blank">Admin Panel</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
-                            
-                            
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
-                                    <a href="{% url 'login' %}" class="btn-main">Giriş Yap</a>
+                                    {% if user.is_authenticated %}
+                                        <span style="font-weight: bold; color: #007bff;">Hoş geldin, {{ user.username }}</span>
+                                        <a href="{% url 'user_logout' %}" class="btn-main" style="background-color: #ff0000; color: #fff;">Çıkış Yap</a>
+                                    {% else %}
+                                        <a href="{% url 'user_login' %}" class="btn-main">Giriş Yap</a>
+                                    {% endif %}
                                     <span id="menu-btn"></span>
                                 </div>
                             </div>
+                                                                                                          
                         </div>
                     </div>
                 </div>

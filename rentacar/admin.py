@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType
+from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType, User
+
 
 class CarAdmin(admin.ModelAdmin):
     list_display = ['brand', 'series', 'model', 'year', 'is_available', 'is_damaged', 'plate_number']
@@ -17,6 +18,7 @@ admin.site.register(TransmissionType)
 admin.site.register(VehicleType)
 admin.site.register(CaseType)
 
+admin.site.register(User)
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['car_with_plate_number', 'start_date', 'return_date']

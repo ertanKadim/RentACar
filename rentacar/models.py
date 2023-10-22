@@ -4,6 +4,12 @@ from django.utils import timezone
 from autoslug import AutoSlugField
 from django.core.validators import MinValueValidator
 import uuid
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    is_admin = models.BooleanField(verbose_name='Yönetici', default=False)
+    is_customer = models.BooleanField(verbose_name='Müşteri', default=True)
+
 
 def validate_year(value):
     current_year = timezone.now().year

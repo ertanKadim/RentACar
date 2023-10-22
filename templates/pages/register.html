@@ -8,12 +8,12 @@
             
             <!-- section begin -->
             <section id="subheader" class="jarallax text-light">
-                <img src="images/background/subheader.jpg" class="jarallax-img" alt="">
+                <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
                     <div class="center-y relative text-center">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-									<h1>Register</h1>
+									<h1>Kaydol</h1>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -31,49 +31,94 @@
 							
 							<div class="spacer-10"></div>
 							
-							<form name="contactForm" id='contact_form' class="form-border" method="post" action='blank.php'>
-
+                            <span class="mb-0 text-muted">
+                                {% if msg %}
+                                    <p class="text-danger">{{ msg | safe }}</p>
+                                {% endif %}
+                            </span>
+                            
+                            <!-- <form method="post">
+                                {% csrf_token %}
+                            
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="field-set">
+                                            <input type='text' name="username" id='username' class="form-control" placeholder="Kullanıcı Adı">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-md-6">
+                                        <div class="field-set">
+                                            <input type='text' name="email" id='email' class="form-control" placeholder="E-Posta">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-md-6">
+                                        <div class="field-set">
+                                            <input type='password' name="password1" id='password1' class="form-control" placeholder="Şifre">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-md-6">
+                                        <div class="field-set">
+                                            <input type='password' name="password2" id='password2' class="form-control" placeholder="Tekrar Şifre">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-md-12">
+                                        <div id='submit' class="pull-left">
+                                            <input type='submit' value='Kaydol' class="btn-main color-2">
+                                        </div>
+                            
+                                        <div id='mail_success' class='success'>Your message has been sent successfully.</div>
+                                        <div id='mail_fail' class='error'>Sorry, an error occurred this time sending your message.</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </form> -->
+                            
+                            <form class="form-border" method="post">
+                                {% csrf_token %}
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <div class="field-set">
-                                            <label>Name:</label>
+                                            <label>İsim:</label>
                                             <input type='text' name='name' id='name' class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
-                                            <label>Email Address:</label>
-                                            <input type='text' name='email' id='email' class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="field-set">
-                                            <label>Choose a Username:</label>
+                                            <label>Kullanıcı Adı:</label>
                                             <input type='text' name='username' id='username' class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
-                                            <label>Phone:</label>
+                                            <label>E-Posta:</label>
+                                            <input type='text' name='email' id='email' class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-set">
+                                            <label>Telefon:</label>
                                             <input type='text' name='phone' id='phone' class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
-                                            <label>Password:</label>
-                                            <input type='text' name='password' id='password' class="form-control">
+                                            <label>Şifre:</label>
+                                            <input type='password' name='password1' id='password1' class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
-                                            <label>Re-enter Password:</label>
-                                            <input type='text' name='re-password' id='re-password' class="form-control">
+                                            <label>Şifre (Tekrar)</label>
+                                            <input type='password' name='password2' id='password2' class="form-control">
                                         </div>
                                     </div>
 
@@ -81,17 +126,18 @@
                                     <div class="col-md-12">
 
                                         <div id='submit' class="pull-left">
-                                            <input type='submit' id='send_message' value='Register Now' class="btn-main color-2">
+                                            <input type='submit' value='Kaydol' class="btn-main color-2">
                                         </div>
 
-                                        <div id='mail_success' class='success'>Your message has been sent successfully.</div>
+                                        <!-- <div id='mail_success' class='success'>Your message has been sent successfully.</div>
                                         <div id='mail_fail' class='error'>Sorry, error occured this time sending your message.</div>
-                                        <div class="clearfix"></div>
+                                        <div class="clearfix"></div> -->
 
                                     </div>
 
                                 </div>
                             </form>
+                            
 							
 						</div>
                     </div>

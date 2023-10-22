@@ -9,7 +9,8 @@ urlpatterns = [
     path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
-    path('myaccount/', views.myaccount, name='myaccount'),
-    path('login/', views.login, name='login'),
+    path('myaccount/', views.my_account, name='my_account'),
+    path('login/', views.user_login, name='user_login'),
+    path('logout/', views.user_logout, name='user_logout'),
     path('register/', views.register, name='register'),
 ]

@@ -25,214 +25,58 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="item_filter_group">
-                                <h4>Vasıta</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="vehicle_type_1" name="vehicle_type_1" type="checkbox" value="vehicle_type_1">
-                                        <label for="vehicle_type_1">Otomobil</label>
-                                    </div>
+                            <form method="GET" action="{% url 'cars' %}">
+                                <div class="item_filter_group">
+                                    <h4>Kasa Tipi</h4>
+                                    <div class="de_form">
+                                        <div class="de_checkbox">
+                                            <input id="cabrio" name="cabrio" type="checkbox" value="cabrio" {% if 'cabrio' in selected_filters %}checked{% endif %}>
+                                            <label for="cabrio">Cabrio</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="vehicle_type_2" name="vehicle_type_2" type="checkbox" value="vehicle_type_2">
-                                        <label for="vehicle_type_2">Karavan</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="coupe" name="coupe" type="checkbox" value="coupe" {% if 'coupe' in selected_filters %}checked{% endif %}>
+                                            <label for="coupe">Coupe</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="vehicle_type_3" name="vehicle_type_3" type="checkbox" value="vehicle_type_3">
-                                        <label for="vehicle_type_3">Arazi, SUV, Pick-up</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="hatchback" name="hatchback" type="checkbox" value="hatchback" {% if 'hatchback' in selected_filters %}checked{% endif %}>
+                                            <label for="hatchback">Hatchback</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="vehicle_type_4" name="vehicle_type_4" type="checkbox" value="vehicle_type_4">
-                                        <label for="vehicle_type_4">Minivan & Panelvan</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="minivan" name="minivan" type="checkbox" value="minivan" {% if 'minivan' in selected_filters %}checked{% endif %}>
+                                            <label for="minivan">Minivan</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="vehicle_type_4" name="vehicle_type_4" type="checkbox" value="vehicle_type_4">
-                                        <label for="vehicle_type_4">Karavan</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="pickup" name="pickup" type="checkbox" value="pickup" {% if 'pickup' in selected_filters %}checked{% endif %}>
+                                            <label for="pickup">Pickup</label>
+                                        </div>
 
-                                </div>
-                            </div>
+                                        <div class="de_checkbox">
+                                            <input id="sedan" name="sedan" type="checkbox" value="sedan" {% if 'sedan' in selected_filters %}checked{% endif %}>
+                                            <label for="sedan">Sedan</label>
+                                        </div>
 
-                            <div class="item_filter_group">
-                                <h4>Kasa Tipi</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_1" name="car_body_type_1" type="checkbox" value="car_body_type_1">
-                                        <label for="car_body_type_1">Convertible</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="sport" name="sport" type="checkbox" value="sport" {% if 'sport' in selected_filters %}checked{% endif %}>
+                                            <label for="sport">Sport</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_2" name="car_body_type_2" type="checkbox" value="car_body_type_2">
-                                        <label for="car_body_type_2">Coupe</label>
-                                    </div>
+                                        <div class="de_checkbox">
+                                            <input id="station_wagon" name="station_wagon" type="checkbox" value="station_wagon" {% if 'station_wagon' in selected_filters %}checked{% endif %}>
+                                            <label for="station_wagon">Station Wagon</label>
+                                        </div>
 
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_3" name="car_body_type_3" type="checkbox" value="car_body_type_3">
-                                        <label for="car_body_type_3">Exotic Cars</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_4" name="car_body_type_4" type="checkbox" value="car_body_type_4">
-                                        <label for="car_body_type_4">Hatchback</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_5" name="car_body_type_5" type="checkbox" value="car_body_type_5">
-                                        <label for="car_body_type_5">Minivan</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_6" name="car_body_type_6" type="checkbox" value="car_body_type_6">
-                                        <label for="car_body_type_6">Pickup Truck</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_7" name="car_body_type_7" type="checkbox" value="car_body_type_7">
-                                        <label for="car_body_type_7">Sedan</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_8" name="car_body_type_8" type="checkbox" value="car_body_type_8">
-                                        <label for="car_body_type_8">Sports Car</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_9" name="car_body_type_9" type="checkbox" value="car_body_type_9">
-                                        <label for="car_body_type_9">Station Wagon</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_body_type_10" name="car_body_type_10" type="checkbox" value="car_body_type_10">
-                                        <label for="car_body_type_10">SUV</label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="item_filter_group">
-                                <h4>Yakıt Türü</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_1" name="car_seat_1" type="checkbox" value="car_seat_1">
-                                        <label for="car_seat_1">Benzin</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_4" name="car_seat_4" type="checkbox" value="car_seat_4">
-                                        <label for="car_seat_4">Benzin + LPG</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_2" name="car_seat_2" type="checkbox" value="car_seat_2">
-                                        <label for="car_seat_2">Dizel</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_3" name="car_seat_3" type="checkbox" value="car_seat_3">
-                                        <label for="car_seat_3">Elektrik</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_4" name="car_seat_4" type="checkbox" value="car_seat_4">
-                                        <label for="car_seat_4">Hybrid</label>
+                                        <div class="de_checkbox">
+                                            <input id="suv" name="suv" type="checkbox" value="suv" {% if 'suv' in selected_filters %}checked{% endif %}>
+                                            <label for="suv">SUV</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="item_filter_group">
-                                <h4>Vites Türü</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_1" name="car_seat_1" type="checkbox" value="car_seat_1">
-                                        <label for="car_seat_1">Manuel</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_2" name="car_seat_2" type="checkbox" value="car_seat_2">
-                                        <label for="car_seat_2">Otomatik</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_3" name="car_seat_3" type="checkbox" value="car_seat_3">
-                                        <label for="car_seat_3">Yarı Otomatik</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item_filter_group">
-                                <h4>Koltuk Sayısı</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_1" name="car_seat_1" type="checkbox" value="car_seat_1">
-                                        <label for="car_seat_1">2</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_2" name="car_seat_2" type="checkbox" value="car_seat_2">
-                                        <label for="car_seat_2">4</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_3" name="car_seat_3" type="checkbox" value="car_seat_3">
-                                        <label for="car_seat_3">5</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_seat_3" name="car_seat_3" type="checkbox" value="car_seat_3">
-                                        <label for="car_seat_3">7+</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item_filter_group">
-                                <h4>Bagaj Kapasitesi</h4>
-                                <div class="de_form">
-                                    <div class="de_checkbox">
-                                        <input id="car_engine_1" name="car_engine_1" type="checkbox" value="car_engine_1">
-                                        <label for="car_engine_1">200-300</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_engine_2" name="car_engine_2" type="checkbox" value="car_engine_2">
-                                        <label for="car_engine_2">300-400</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_engine_3" name="car_engine_3" type="checkbox" value="car_engine_3">
-                                        <label for="car_engine_3">400-500</label>
-                                    </div>
-
-                                    <div class="de_checkbox">
-                                        <input id="car_engine_4" name="car_engine_4" type="checkbox" value="car_engine_4">
-                                        <label for="car_engine_4">500-600</label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="item_filter_group">
-                                <h4>Fiyat Aralığı (₺)</h4>
-                                  <div class="price-input">
-                                    <div class="field">
-                                      <span>Min</span>
-                                      <input type="number" class="input-min" value="0">
-                                    </div>
-                                    <div class="field">
-                                      <span>Max</span>
-                                      <input type="number" class="input-max" value="2000">
-                                    </div>
-                                  </div>
-                                  <div class="slider">
-                                    <div class="progress"></div>
-                                  </div>
-                                  <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="2000" value="0" step="1">
-                                    <input type="range" class="range-max" min="0" max="2000" value="2000" step="1">
-                                  </div>
-                            </div>
+                                <button type="submit">Filtrele</button>
+                            </form>
                         </div>
 
                         <div class="col-lg-9">
@@ -248,7 +92,6 @@
                                                     <h4>{{car.brand}}&nbsp;{{car.series}}&nbsp;{{car.model}}</h4>
                                                     <div class="d-atr-group">
                                                         <ul class="d-atr">
-                                                            <li><span>Koltuk:</span>{{car.number_of_seats}}</li>
                                                             <li><span>Bagaj:</span>{{car.luggage_volume}} L</li>
                                                             <li><span>Kapı:</span>{{car.number_of_doors}}</li>
                                                             <li><span>Yakıt:</span>{{car.fuel_type}}</li>
@@ -257,7 +100,6 @@
                                                             <li><span>Araç Tipi:</span>{{car.vehicle_type}}</li>
                                                             <li><span>Kasa Tipi:</span>{{car.case_type}}</li>
                                                             <li><span>Renk:</span>{{car.color}}</li>
-                                                            <li><span>Kasa:</span>{{car.case_type}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -273,8 +115,9 @@
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
+                                    {% empty %}
+                                        <h4 style="text-align: center; color:red;">Aradığınız kriterlere uygun araç bulunamadı.</h4>
                                 {% endfor %}
-
                             </div>
                         </div>
                     </div>
@@ -284,6 +127,5 @@
 			
         </div>
         <!-- content close -->
-
         <a href="#" id="back-to-top"></a>
 {% endblock %}

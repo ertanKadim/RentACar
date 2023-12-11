@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from .models import Car, Booking
 from django.utils import timezone
 from django.contrib import messages
@@ -6,6 +6,8 @@ import datetime
 import json
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, RegisterForm
+from .forms import CaseTypeFilterForm
+
 
 def index(request):
     title = 'Anasayfa'
@@ -17,53 +19,28 @@ def index(request):
         'cars': cars,
     })
 
+
 def cars(request):
-    title = 'Kiralık Araçlar'
-    cars = Car.objects.all()  # Tüm araçları başlangıçta alın
-    selected_filters = []  # Seçilen filtreleri saklamak için bir liste
+    cars = Car.objects.all()
+    filter_form = CaseTypeFilterForm(request.GET)
 
-    if request.method == "GET":
-        if 'sedan' in request.GET:
-            cars = cars.filter(case_type__type="Sedan")
-            selected_filters.append("sedan")
+    if filter_form.is_valid():
+        case_type_name = filter_form.cleaned_data.get('case_types')
+        if case_type_name:
+            cars = cars.filter(case_type__type__iexact=case_type_name)
 
-        if 'hatchback' in request.GET:
-            cars = cars.filter(case_type__type="Hatchback")
-            selected_filters.append("hatchback")
 
-        if 'suv' in request.GET:
-            cars = cars.filter(case_type__type="SUV")
-            selected_filters.append("suv")
+            # Kategori ID'lerini alarak URL'yi oluşturun
+            selected_case_types = "&".join([f"case_types={case_type_id}" for case_type_id in case_type_name])
+            return HttpResponseRedirect(f'/cars/?{selected_case_types}')
 
-        if 'pickup' in request.GET:
-            cars = cars.filter(case_type__type="Pickup")
-            selected_filters.append("pickup")
-
-        if 'coupe' in request.GET:
-            cars = cars.filter(case_type__type="Coupe")
-            selected_filters.append("coupe")
-
-        if 'cabrio' in request.GET:
-            cars = cars.filter(case_type__type="Cabrio")
-            selected_filters.append("cabrio")
-
-        if 'station_wagon' in request.GET:
-            cars = cars.filter(case_type__type="Station Wagon")
-            selected_filters.append("station_wagon")
-
-        if 'minivan' in request.GET:
-            cars = cars.filter(case_type__type="Minivan")
-            selected_filters.append("minivan")
-
-        if 'sport' in request.GET:
-            cars = cars.filter(case_type__type="Sport")
-            selected_filters.append("sport")
-
-    return render(request, 'pages/cars.html', {
-        'title': title,
+    context = {
         'cars': cars,
-        'selected_filters': selected_filters,  # Seçilen filtreleri şablona iletiyoruz
-    })
+        'filter_form': filter_form,
+    }
+
+    return render(request, 'pages/cars.html', context)
+
 
 
 

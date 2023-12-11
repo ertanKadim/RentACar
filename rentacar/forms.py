@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from phonenumber_field.formfields import PhoneNumberField
 from .models import User
+from .models import CaseType
 # from .models import Car
 
 class LoginForm(forms.Form):
@@ -86,3 +87,14 @@ class RegisterForm(UserCreationForm):
 #             'pickup_location', 'dropoff_location', 'start_date', 
 #             'start_time', 'return_date', 'return_time'
 #         ]
+
+
+
+
+class CaseTypeFilterForm(forms.Form):
+    case_types = forms.ModelMultipleChoiceField(
+        queryset=CaseType.objects.all(),
+        widget=forms.CheckboxSelectMultiple(attrs={'type': 'case_types'}),
+        required=False,
+        to_field_name='id'  # Kategori ID'lerini kullan
+    )

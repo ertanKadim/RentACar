@@ -6,6 +6,7 @@ import datetime
 import json
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, RegisterForm
+from django.contrib.auth.decorators import login_required
 from .forms import CaseTypeFilterForm
 
 
@@ -21,29 +22,23 @@ def index(request):
 
 
 def cars(request):
+    # Tüm araçları al
     cars = Car.objects.all()
-    filter_form = CaseTypeFilterForm(request.GET)
 
-    if filter_form.is_valid():
-        case_type_name = filter_form.cleaned_data.get('case_types')
-        if case_type_name:
-            cars = cars.filter(case_type__type__iexact=case_type_name)
+    # Kasa tipine göre filtreleme
+    case_type_value = request.GET.getlist('case_type')
+    if case_type_value:
+        # Büyük-küçük harf duyarlılığı olmadan filtreleme
+        cars = cars.filter(case_type__type__in=[value.capitalize() for value in case_type_value])
 
-
-            # Kategori ID'lerini alarak URL'yi oluşturun
-            selected_case_types = "&".join([f"case_types={case_type_id}" for case_type_id in case_type_name])
-            return HttpResponseRedirect(f'/cars/?{selected_case_types}')
-
-    context = {
-        'cars': cars,
-        'filter_form': filter_form,
-    }
-
-    return render(request, 'pages/cars.html', context)
+    return render(request, 'pages/cars.html', {'cars': cars})
 
 
 
 
+
+
+@login_required
 def car_detail(request, slug):
     car = get_object_or_404(Car, slug=slug)
     title = f"{car.brand} {car.model}"

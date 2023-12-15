@@ -28,13 +28,17 @@ def cars(request):
     # Kasa tipine göre filtreleme
     case_type_value = request.GET.getlist('case_type')
     if case_type_value:
-        # Büyük-küçük harf duyarlılığı olmadan filtreleme
-        cars = cars.filter(case_type__type__in=[value.capitalize() for value in case_type_value])
+        # URL'den gelen değerleri direkt olarak kullan
+        cars = cars.filter(case_type__type__in=case_type_value)
 
-    return render(request, 'pages/cars.html', {'cars': cars})
+    # Checkbox durumlarını template'e göndermek için bir sözlük hazırlayın
+    # Bu sözlükte anahtarları URL'den gelen raw değerler olarak kullanın
+    checkbox_values = {value: "checked" for value in case_type_value}
 
-
-
+    return render(request, 'pages/cars.html', {
+        'cars': cars,
+        'checkbox_values': checkbox_values
+    })
 
 
 

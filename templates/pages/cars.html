@@ -30,50 +30,66 @@
                                     <h4>Kasa Tipi Seç</h4>
                                     <div class="de_form">
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_1" name="case_type" type="checkbox" value="Sedan">
-                                            <label for="car_body_type_1">Sedan</label>
+                                            <input id="car_body_type_1" name="case_type" type="checkbox" value="Cabrio"
+                                                {% if checkbox_values.Cabrio %}checked{% endif %}>
+                                            <label for="car_body_type_1">Cabrio</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_2" name="case_type" type="checkbox" value="Hatchback">
-                                            <label for="car_body_type_2">Hatchback</label>
+                                            <input id="car_body_type_2" name="case_type" type="checkbox" value="Coupe"
+                                                {% if checkbox_values.Coupe %}checked{% endif %}>
+                                            <label for="car_body_type_2">Coupe</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_3" name="case_type" type="checkbox" value="3">
-                                            <label for="car_body_type_3">Station Wagon</label>
+                                            <input id="car_body_type_3" name="case_type" type="checkbox" value="Crossover"
+                                                {% if checkbox_values.Crossover %}checked{% endif %}>
+                                            <label for="car_body_type_3">Crossover</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_4" name="case_type" type="checkbox" value="4">
-                                            <label for="car_body_type_4">Coupe</label>
+                                            <input id="car_body_type_4" name="case_type" type="checkbox" value="Hatchback"
+                                                {% if checkbox_values.Hatchback %}checked{% endif %}>
+                                            <label for="car_body_type_4">Hatchback</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_5" name="case_type" type="checkbox" value="5">
+                                            <input id="car_body_type_5" name="case_type" type="checkbox" value="Minivan"
+                                                {% if checkbox_values.Minivan %}checked{% endif %}>
                                             <label for="car_body_type_5">Minivan</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_6" name="case_type" type="checkbox" value="6">
+                                            <input id="car_body_type_6" name="case_type" type="checkbox" value="Pickup"
+                                                {% if checkbox_values.Pickup %}checked{% endif %}>
                                             <label for="car_body_type_6">Pickup</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_7" name="case_type" type="checkbox" value="7">
+                                            <input id="car_body_type_7" name="case_type" type="checkbox" value="SUV"
+                                                {% if checkbox_values.SUV %}checked{% endif %}>
                                             <label for="car_body_type_7">SUV</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_8" name="case_type" type="checkbox" value="8">
-                                            <label for="car_body_type_8">Sport</label>
+                                            <input id="car_body_type_8" name="case_type" type="checkbox" value="Sedan"
+                                                {% if checkbox_values.Sedan %}checked{% endif %}>
+                                            <label for="car_body_type_8">Sedan</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_9" name="case_type" type="checkbox" value="9">
-                                            <label for="car_body_type_9">Crossover</label>
+                                            <input id="car_body_type_9" name="case_type" type="checkbox" value="Sport"
+                                                {% if checkbox_values.Sport %}checked{% endif %}>
+                                            <label for="car_body_type_9">Sport</label>
+                                        </div>
+
+                                        <div class="de_checkbox">
+                                            <input id="car_body_type_10" name="case_type" type="checkbox" value="Station Wagon" 
+                                                {% if 'Station Wagon' in checkbox_values %}checked{% endif %}>
+                                            <label for="car_body_type_10">Station Wagon</label>
                                         </div>
                                     </div>
+                                    <br>
                                     <button type="submit" class="btn-main">Filtrele</button>
                                 </div>
                             </form>

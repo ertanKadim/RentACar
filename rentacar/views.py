@@ -7,7 +7,7 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth.decorators import login_required
-from .forms import CaseTypeFilterForm
+from django.db.models import Count
 
 
 def index(request):
@@ -28,17 +28,21 @@ def cars(request):
     # Kasa tipine göre filtreleme
     case_type_value = request.GET.getlist('case_type')
     if case_type_value:
-        # URL'den gelen değerleri direkt olarak kullan
         cars = cars.filter(case_type__type__in=case_type_value)
 
+    # Her kasa tipi için araç sayısını hesapla
+    case_type_counts_query = Car.objects.values('case_type__type').annotate(count=Count('case_type'))
+    case_type_counts = {item['case_type__type'].replace(" ", ""): item['count'] for item in case_type_counts_query}
+
     # Checkbox durumlarını template'e göndermek için bir sözlük hazırlayın
-    # Bu sözlükte anahtarları URL'den gelen raw değerler olarak kullanın
-    checkbox_values = {value: "checked" for value in case_type_value}
+    checkbox_values = {value.replace(" ", ""): "checked" for value in case_type_value}
 
     return render(request, 'pages/cars.html', {
         'cars': cars,
-        'checkbox_values': checkbox_values
+        'checkbox_values': checkbox_values,
+        'case_type_counts': case_type_counts
     })
+
 
 
 

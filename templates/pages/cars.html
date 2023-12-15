@@ -32,62 +32,63 @@
                                         <div class="de_checkbox">
                                             <input id="car_body_type_1" name="case_type" type="checkbox" value="Cabrio"
                                                 {% if checkbox_values.Cabrio %}checked{% endif %}>
-                                            <label for="car_body_type_1">Cabrio</label>
-                                        </div>
+                                            <label for="car_body_type_1">Cabrio ({{ case_type_counts.Cabrio|default:0 }})</label>
+                                        </div>                                        
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_2" name="case_type" type="checkbox" value="Coupe"
                                                 {% if checkbox_values.Coupe %}checked{% endif %}>
-                                            <label for="car_body_type_2">Coupe</label>
+                                            <label for="car_body_type_2">Coupe ({{ case_type_counts.Coupe|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_3" name="case_type" type="checkbox" value="Crossover"
                                                 {% if checkbox_values.Crossover %}checked{% endif %}>
-                                            <label for="car_body_type_3">Crossover</label>
+                                            <label for="car_body_type_3">Crossover ({{ case_type_counts.Crossover|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_4" name="case_type" type="checkbox" value="Hatchback"
                                                 {% if checkbox_values.Hatchback %}checked{% endif %}>
-                                            <label for="car_body_type_4">Hatchback</label>
+                                            <label for="car_body_type_4">Hatchback ({{ case_type_counts.Hatchback|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_5" name="case_type" type="checkbox" value="Minivan"
                                                 {% if checkbox_values.Minivan %}checked{% endif %}>
-                                            <label for="car_body_type_5">Minivan</label>
+                                            <label for="car_body_type_5">Minivan ({{ case_type_counts.Minivan|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_6" name="case_type" type="checkbox" value="Pickup"
                                                 {% if checkbox_values.Pickup %}checked{% endif %}>
-                                            <label for="car_body_type_6">Pickup</label>
+                                            <label for="car_body_type_6">Pickup ({{ case_type_counts.Pickup|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_7" name="case_type" type="checkbox" value="SUV"
                                                 {% if checkbox_values.SUV %}checked{% endif %}>
-                                            <label for="car_body_type_7">SUV</label>
+                                            <label for="car_body_type_7">SUV ({{ case_type_counts.SUV|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_8" name="case_type" type="checkbox" value="Sedan"
                                                 {% if checkbox_values.Sedan %}checked{% endif %}>
-                                            <label for="car_body_type_8">Sedan</label>
+                                            <label for="car_body_type_8">Sedan ({{ case_type_counts.Sedan|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
                                             <input id="car_body_type_9" name="case_type" type="checkbox" value="Sport"
                                                 {% if checkbox_values.Sport %}checked{% endif %}>
-                                            <label for="car_body_type_9">Sport</label>
+                                            <label for="car_body_type_9">Sport ({{ case_type_counts.Sport|default:0 }})</label>
                                         </div>
 
                                         <div class="de_checkbox">
-                                            <input id="car_body_type_10" name="case_type" type="checkbox" value="Station Wagon" 
+                                            <input id="car_body_type_10" name="case_type" type="checkbox" value="Station Wagon"
                                                 {% if 'Station Wagon' in checkbox_values %}checked{% endif %}>
-                                            <label for="car_body_type_10">Station Wagon</label>
-                                        </div>
+                                            <label for="car_body_type_10">Station Wagon ({{ case_type_counts.StationWagon|default:0 }})</label>
+                                        </div>                                        
+                                        
                                     </div>
                                     <br>
                                     <button type="submit" class="btn-main">Filtrele</button>

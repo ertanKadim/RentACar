@@ -32,17 +32,16 @@ def cars(request):
 
     # Her kasa tipi için araç sayısını hesapla
     case_type_counts_query = Car.objects.values('case_type__type').annotate(count=Count('case_type'))
-    case_type_counts = {item['case_type__type'].replace(" ", ""): item['count'] for item in case_type_counts_query}
+    case_type_counts = {item['case_type__type']: item['count'] for item in case_type_counts_query}
 
     # Checkbox durumlarını template'e göndermek için bir sözlük hazırlayın
-    checkbox_values = {value.replace(" ", ""): "checked" for value in case_type_value}
+    checkbox_values = {value: "checked" for value in case_type_value}
 
     return render(request, 'pages/cars.html', {
         'cars': cars,
         'checkbox_values': checkbox_values,
         'case_type_counts': case_type_counts
     })
-
 
 
 

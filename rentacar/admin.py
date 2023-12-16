@@ -21,8 +21,8 @@ admin.site.register(CaseType)
 admin.site.register(User)
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['car_with_plate_number', 'start_date', 'return_date']
-    list_display_links = ['car_with_plate_number', 'start_date', 'return_date']
+    list_display = ['orderid', 'car_with_plate_number', 'start_date', 'return_date']
+    list_display_links = ['orderid', 'car_with_plate_number', 'start_date', 'return_date']
 
     def car_with_plate_number(self, obj):
         return f"{obj.car} - {obj.car.plate_number}"

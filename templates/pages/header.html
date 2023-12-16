@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="tr">
 
 <head>
     <title>{% block title %} {{ title }} | Anatolia Wheels {% endblock %}</title>
@@ -77,7 +77,7 @@
                                     <li><a class="menu-item" href="{% url 'contact' %}">İletişim</a></li>
                                     <li><a class="menu-item" href="{% url 'blog' %}">Blog</a></li>
                                     {% if user.is_customer %}
-                                        <li><a class="menu-item" href="{% url 'my_account' %}">Hesabım</a></li>
+                                        <li><a class="menu-item" href="{% url 'account_dashboard' %}">Hesabım</a></li>
                                     {% elif user.is_admin %}
                                         <li><a class="menu-item" href="{% url 'admin:index' %}" target="_blank">Admin Panel</a></li>
                                     {% endif %}

@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
-from .models import Car, Booking
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Car, Booking, User
 from django.utils import timezone
 from django.contrib import messages
 import datetime
@@ -76,6 +76,7 @@ def car_detail(request, slug):
         # Arabanın bu tarihlerde müsait olup olmadığını kontrol et
         if Booking.is_car_available(car, start_datetime.date(), return_datetime.date()):
             booking = Booking(
+                user=request.user,
                 car=car,
                 start_date=start_datetime.date(),
                 start_time=start_datetime.time(),
@@ -122,11 +123,16 @@ def about(request):
         'title': title,
     })
 
-def my_account(request):
+@login_required
+def account_dashboard(request):
     title = 'Hesabım'
-    return render(request, 'pages/myaccount.html', {
+    bookings = Booking.objects.filter(user=request.user)  # Kullanıcının rezervasyonlarını çek
+    return render(request, 'pages/account_dashboard.html', {
         'title': title,
+        'bookings': bookings,
     })
+
+
 
 def register(request):
     title = 'Kayıt Ol'

@@ -5,6 +5,8 @@ from autoslug import AutoSlugField
 from django.core.validators import MinValueValidator
 import uuid
 from django.contrib.auth.models import AbstractUser
+from django.utils.crypto import get_random_string
+from django.conf import settings
 
 class User(AbstractUser):
     is_admin = models.BooleanField(verbose_name='Yönetici', default=False)
@@ -156,6 +158,7 @@ class Car(models.Model):
         ordering = ['-id']
 
 class Booking(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Kullanıcı Adı")
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     start_date = models.DateField(blank=True, verbose_name="Alış Tarihi")
     start_time = models.TimeField(blank=True, verbose_name="Alış Saati")
@@ -163,6 +166,22 @@ class Booking(models.Model):
     return_time = models.TimeField(blank=True, verbose_name="Teslim Saati")
     pickup_location = models.CharField(blank=True, max_length=255, verbose_name="Alış Yeri")
     dropoff_location = models.CharField(blank=True, max_length=255, verbose_name="Teslim Yeri")
+    orderid = models.CharField(max_length=9, unique=True, verbose_name="Sipariş ID")
+
+    def save(self, *args, **kwargs):
+        if not self.orderid:
+            # Benzersiz bir orderid oluşturana kadar döngüyü sürdür
+            self.orderid = self.generate_order_id()
+        super(Booking, self).save(*args, **kwargs)
+
+    def generate_order_id(self):
+        # Benzersiz bir orderid üret
+        orderid = f"#{get_random_string(length=8, allowed_chars='1234567890')}"
+        while Booking.objects.filter(orderid=orderid).exists():
+            # Eğer üretilen orderid zaten varsa, yeniden üret
+            orderid = f"#{get_random_string(length=8, allowed_chars='1234567890')}"
+        return orderid
+
 
     @classmethod
     def is_car_available(cls, car, start_date, return_date):

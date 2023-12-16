@@ -5,10 +5,9 @@ from django.contrib import messages
 import datetime
 import json
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, UserPasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-
 
 def index(request):
     title = 'Anasayfa'
@@ -132,6 +131,22 @@ def account_dashboard(request):
         'bookings': bookings,
     })
 
+@login_required
+def account_profile(request):
+    if request.method == 'POST':
+        form = UserPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Şifreniz başarıyla güncellendi.')
+            return redirect('account_profile')  # Profil sayfasına yönlendir
+        else:
+            messages.error(request, form.errors)
+    else:
+        form = UserPasswordChangeForm(user=request.user)
+
+    return render(request, 'pages/account_profile.html', {
+        'form': form,
+    })
 
 
 def register(request):

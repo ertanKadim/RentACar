@@ -85,16 +85,41 @@
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
-                                    {% if user.is_authenticated %}
-                                        <span style="font-weight: bold; color: #007bff;">Hoş geldin, {{ user.username }}</span>
-                                        <a href="{% url 'user_logout' %}" class="btn-main" style="background-color: #ff0000; color: #fff;">Çıkış Yap</a>
-                                    {% else %}
-                                        <a href="{% url 'user_login' %}" class="btn-main">Giriş Yap</a>
-                                    {% endif %}
-                                    <span id="menu-btn"></span>
+                                    <div class="de-login-menu">
+                                        <!-- Profil Menüsü -->
+                                        {% if user.is_authenticated %}
+                                            <span id="de-click-menu-profile" class="de-menu-profile">
+                                                <!-- Kullanıcı Profil Resmi -->
+                                                {% if user.profile_image %}
+                                                    <img src="{{ user.profile_image.url }}" class="img-fluid" alt="{{ user.username }}">
+                                                {% else %}
+                                                    <!-- Varsayılan bir profil resmi kullanabilirsiniz -->
+                                                    <img src="{% static 'images/profile/1.jpg' %}" class="img-fluid" alt="Profil">
+                                                {% endif %}
+                                            </span>
+                            
+                                            <div id="de-submenu-profile" class="de-submenu">
+                                                <div class="d-name">
+                                                    <!-- Kullanıcı Adı ve E-Posta -->
+                                                    <h4>{{ user.get_full_name|default:user.username }}</h4>
+                                                    <span class="text-gray">{{ user.email }}</span>
+                                                </div>
+                            
+                                                <div class="d-line"></div>
+                            
+                                                <ul class="menu-col">
+                                                    <li><a href="{% url 'account_dashboard' %}"><i class="fa fa-home"></i>Dashboard</a></li>
+                                                    <li><a href="{% url 'account_profile' %}"><i class="fa fa-user"></i>Profilim</a></li>
+                                                    <li><a href="{% url 'user_logout' %}"><i class="fa fa-sign-out"></i>Çıkış Yap</a></li>
+                                                </ul>
+                                            </div>
+                                        {% else %}
+                                            <a href="{% url 'user_login' %}" class="btn-main">Giriş Yap</a>
+                                        {% endif %}
+                                        <span id="menu-btn"></span>
+                                    </div>
                                 </div>
-                            </div>
-                                                                                                          
+                            </div>                                                                        
                         </div>
                     </div>
                 </div>

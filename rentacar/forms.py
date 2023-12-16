@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from phonenumber_field.formfields import PhoneNumberField
 from .models import User
-from .models import CaseType
+from django.contrib.auth.forms import PasswordChangeForm
 # from .models import Car
 
 class LoginForm(forms.Form):
@@ -78,6 +78,14 @@ class RegisterForm(UserCreationForm):
             widget=forms.HiddenInput(),
         )
 
+class UserPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordChangeForm, self).__init__(*args, **kwargs)
+        # Form alanlarını özelleştirebilirsiniz
+        self.fields['old_password'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Eski Şifre'})
+        self.fields['new_password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Yeni Şifre'})
+        self.fields['new_password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Yeni Şifre (Tekrar)'})
+
 # from .models import Car
 
 # class CarRentalForm(forms.ModelForm):
@@ -87,14 +95,3 @@ class RegisterForm(UserCreationForm):
 #             'pickup_location', 'dropoff_location', 'start_date', 
 #             'start_time', 'return_date', 'return_time'
 #         ]
-
-
-
-
-class CaseTypeFilterForm(forms.Form):
-    case_types = forms.ModelMultipleChoiceField(
-        queryset=CaseType.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={'type': 'case_types'}),
-        required=False,
-        to_field_name='id'  # Kategori ID'lerini kullan
-    )

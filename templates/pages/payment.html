@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Subheader Section -->
+    <section id="subheader" class="jarallax text-light">
+        <img src="{% static 'images/background/2.jpg' %}" class="jarallax-img" alt="">
+        <div class="center-y relative text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1>Ödeme Sayfası</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ödeme Başarılı</h4>
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                            <hr>
+                            <a href="{% url 'account_dashboard' %}" class="btn btn-primary">Siparişlerime Git</a>
+                        </div>
+                    {% else %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ödeme Yap</h5>
+                                <form method="post" action="{% url 'payment' %}">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn btn-success">Öde</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

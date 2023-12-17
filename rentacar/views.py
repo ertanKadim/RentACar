@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Car, Booking, User
+from .models import Car, Booking
 from django.utils import timezone
 from django.contrib import messages
-import datetime
+from datetime import datetime, timedelta
 import json
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, RegisterForm, UserPasswordChangeForm
+from .forms import LoginForm, RegisterForm, UserPasswordChangeForm, PaymentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 
@@ -57,7 +57,7 @@ def car_detail(request, slug):
         current = start
         while current <= end:
             booked_dates_list.append(current.strftime('%Y-%m-%d'))
-            current += datetime.timedelta(days=1)
+            current += timedelta(days=1)
 
     if request.method == 'POST':
         # Kullanıcının formdan gönderdiği tarihleri al
@@ -68,35 +68,58 @@ def car_detail(request, slug):
         pickup_location = request.POST.get('pickup_location')
         dropoff_location = request.POST.get('dropoff_location')
 
-        # Tarihleri Python'un anlayabileceği formata dönüştür
-        start_datetime = datetime.datetime.strptime(f"{start_date} {start_time}", "%d %B %Y %H:%M")
-        return_datetime = datetime.datetime.strptime(f"{return_date} {return_time}", "%d %B %Y %H:%M")
+        # Session'a bilgileri kaydet
+        request.session['booking_details'] = {
+            'car_id': car.id,
+            'start_date': start_date,
+            'start_time': start_time,
+            'return_date': return_date,
+            'return_time': return_time,
+            'pickup_location': pickup_location,
+            'dropoff_location': dropoff_location
+        }
 
-        # Arabanın bu tarihlerde müsait olup olmadığını kontrol et
-        if Booking.is_car_available(car, start_datetime.date(), return_datetime.date()):
-            booking = Booking(
-                user=request.user,
-                car=car,
-                start_date=start_datetime.date(),
-                start_time=start_datetime.time(),
-                return_date=return_datetime.date(),
-                return_time=return_datetime.time(),
-                pickup_location=pickup_location,
-                dropoff_location=dropoff_location
-            )
-            booking.save()
-            messages.success(request, 'Araba başarıyla kiralandı!')
-            return redirect('car_detail', slug=slug)
-        else:
-            messages.error(request, 'Bu tarihlerde araba müsait değil.')
+        return redirect('payment')
 
     return render(request, 'pages/car_detail.html', {
         'car': car,
         'now': timezone.now(),
-        'car_id': car.id,
         'booked_dates_json': json.dumps(booked_dates_list),
         'title': title,
     })
+
+@login_required
+def payment(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            booking_details = request.session.get('booking_details')
+            if booking_details:
+                # Tarih ve saat bilgilerini datetime objesine dönüştür
+                start_datetime = datetime.strptime(f"{booking_details['start_date']} {booking_details['start_time']}", '%d %B %Y %H:%M')
+                return_datetime = datetime.strptime(f"{booking_details['return_date']} {booking_details['return_time']}", '%d %B %Y %H:%M')
+
+                # Booking nesnesi oluştur
+                Booking.objects.create(
+                    user=request.user,
+                    car_id=booking_details['car_id'],
+                    start_date=start_datetime.date(),
+                    start_time=start_datetime.time(),
+                    return_date=return_datetime.date(),
+                    return_time=return_datetime.time(),
+                    pickup_location=booking_details['pickup_location'],
+                    dropoff_location=booking_details['dropoff_location'],
+                )
+                messages.success(request, 'Ödeme başarılı. Araba başarıyla kiralandı!')
+                return redirect('payment')
+            else:
+                messages.error(request, 'Rezervasyon detayları bulunamadı.')
+        else:
+            messages.error(request, 'Ödeme sırasında bir hata oluştu.')
+    else:
+        form = PaymentForm()
+
+    return render(request, 'pages/payment.html', {'form': form})
 
 def blog(request):
     title = 'Blog'

@@ -124,7 +124,7 @@
                                                 <div class="d-price">
                                                     Günlük Ücret <span>{{car.price_per_day}} ₺</span>
                                                     {% if car.is_damaged %}
-                                                        <a class="btn-main" style="background-color: red;">Kazalı</a>
+                                                        <a class="btn-main" style="background-color: red;">Hasarlı</a>
                                                     {% else %}
                                                         <a class="btn-main" href="{% url 'car_detail' car.slug %}">Kirala</a>
                                                     {% endif %}

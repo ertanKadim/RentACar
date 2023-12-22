@@ -79,6 +79,7 @@ def car_detail(request, slug):
             'dropoff_location': dropoff_location
         }
 
+        request.session['payment_access_allowed'] = True
         return redirect('payment')
 
     return render(request, 'pages/car_detail.html', {
@@ -90,16 +91,16 @@ def car_detail(request, slug):
 
 @login_required
 def payment(request):
+    if not request.session.pop('payment_access_allowed', False):
+        return redirect('index')
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
             booking_details = request.session.get('booking_details')
             if booking_details:
-                # Tarih ve saat bilgilerini datetime objesine dönüştür
                 start_datetime = datetime.strptime(f"{booking_details['start_date']} {booking_details['start_time']}", '%d %B %Y %H:%M')
                 return_datetime = datetime.strptime(f"{booking_details['return_date']} {booking_details['return_time']}", '%d %B %Y %H:%M')
 
-                # Booking nesnesi oluştur
                 Booking.objects.create(
                     user=request.user,
                     car_id=booking_details['car_id'],

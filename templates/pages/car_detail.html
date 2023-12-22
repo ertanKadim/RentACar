@@ -126,7 +126,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 mb20">
                                             <h5>Alış Yeriniz</h5>
-                                            <input type="text" name="pickup_location" onfocus="geolocate()" placeholder="Alış konumunuzu girin" id="autocomplete" autocomplete="off" class="form-control" value="{{ car.pickup_location }}" required>
+                                            <input type="text" name="pickup-location" onfocus="geolocate()" placeholder="Alış konumunuzu girin" id="autocomplete" autocomplete="off" class="form-control" value="{{ car.pickup_location }}" required>
 
                                             <div class="jls-address-preview jls-address-preview--hidden">
                                                 <div class="jls-address-preview__header">
@@ -136,7 +136,7 @@
 
                                         <div class="col-lg-12 mb20">
                                             <h5>İade Yeriniz</h5>
-                                            <input type="text" name="dropoff_location" onfocus="geolocate()" placeholder="Teslim konumunuzu girin" id="autocomplete2" autocomplete="off" class="form-control" value="{{ car.dropoff_location }}" required>
+                                            <input type="text" name="dropoff-location" onfocus="geolocate()" placeholder="Teslim konumunuzu girin" id="autocomplete2" autocomplete="off" class="form-control" value="{{ car.dropoff_location }}" required>
 
                                             <div class="jls-address-preview jls-address-preview--hidden">
                                                 <div class="jls-address-preview__header">
@@ -147,8 +147,8 @@
                                         <div class="col-lg-12 mb20">
                                             <h5>Teslim Alma Tarihi ve Saati</h5>
                                             <div class="date-time-field">
-                                                <input type="text" id="date-pickerr" name="Pick Up Date" placeholder="Tıkla" autocomplete="off" required>
-                                                <select name="Pick Up Time" id="pickup-time">
+                                                <input type="text" id="date-pickerr" name="pick-up-date" placeholder="Tıkla" autocomplete="off" required>
+                                                <select name="pick-up-time" id="pickup-time">
                                                     <option selected disabled value="Select time">Saat</option>
                                                     <option value="00:00">00:00</option>
                                                     <option value="00:30">00:30</option>
@@ -205,8 +205,8 @@
                                         <div class="col-lg-12 mb20">
                                             <h5>Teslim Etme Tarihi ve Saati</h5>
                                             <div class="date-time-field">
-                                                <input type="text" id="date-pickerr-2" name="Collection Date" value="" placeholder="Tıkla" autocomplete="off" required>
-                                                <select name="Collection Time" id="collection-time">
+                                                <input type="text" id="date-pickerr-2" name="collection-date" value="" placeholder="Tıkla" autocomplete="off" required>
+                                                <select name="collection-time" id="collection-time">
                                                     <option selected disabled value="Select time">Saat</option>
                                                     <option value="00:00">00:00</option>
                                                     <option value="00:30">00:30</option>

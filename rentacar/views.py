@@ -61,12 +61,12 @@ def car_detail(request, slug):
 
     if request.method == 'POST':
         # Kullanıcının formdan gönderdiği tarihleri al
-        start_date = request.POST.get('Pick Up Date')
-        start_time = request.POST.get('Pick Up Time')
-        return_date = request.POST.get('Collection Date')
-        return_time = request.POST.get('Collection Time')
-        pickup_location = request.POST.get('pickup_location')
-        dropoff_location = request.POST.get('dropoff_location')
+        start_date = request.POST.get('pick-up-date')
+        start_time = request.POST.get('pick-up-time')
+        return_date = request.POST.get('collection-date')
+        return_time = request.POST.get('collection-time')
+        pickup_location = request.POST.get('pickup-location')
+        dropoff_location = request.POST.get('dropoff-location')
 
         # Session'a bilgileri kaydet
         request.session['booking_details'] = {

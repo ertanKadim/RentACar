@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, RegisterForm, UserPasswordChangeForm, PaymentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-
+from django.core.mail import send_mail
 def index(request):
     title = 'Anasayfa'
 
@@ -91,8 +91,8 @@ def car_detail(request, slug):
 
 @login_required
 def payment(request):
-    if not request.session.pop('payment_access_allowed', False):
-        return redirect('index')
+    # if request.method == 'GET' and not request.session.pop('payment_access_allowed', False):
+    #     return redirect('index')
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
@@ -118,6 +118,8 @@ def payment(request):
         else:
             messages.error(request, 'Ödeme sırasında bir hata oluştu.')
     else:
+        if 'booking_details' not in request.session:
+            return redirect('index')
         form = PaymentForm()
 
     return render(request, 'pages/payment.html', {'form': form})
@@ -136,6 +138,21 @@ def blog_detail(request, slug):
 
 def contact(request):
     title = 'İletişim'
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
+        send_mail(
+            subject=f"Yeni İletişim Formu Mesajı - {name}",
+            message=f"Mesaj: {message}\nE-posta: {email}\nTelefon: {phone}",
+            from_email=email,
+            recipient_list=['kadimertan78@gmail.com'],
+        )
+
+        messages.success(request, 'Mesajınız başarıyla gönderildi!')
+        return redirect('contact')
     return render(request, 'pages/contact.html', {
         'title': title,
     })

@@ -1,0 +1,185 @@
+[33mcommit 0cbbfc8b5f21d3daa59f9f20aaf1fd8f9ea15c0e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 22 23:14:35 2023 +0300
+
+    name guncellendi
+
+[33mcommit 3ad40bd9257c0e67b1217bb4d9060581d6580c1d[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 22 23:07:22 2023 +0300
+
+    payment sayfasi giris engellendi
+
+[33mcommit c3dd67bd4d9177a341f5cfc43d34658c3a9f2b67[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 22 22:53:30 2023 +0300
+
+    logo guncellendi
+
+[33mcommit 2510c94cbb61385d8f242ac27bf8f574b1ab90b9[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Mon Dec 18 18:19:25 2023 +0300
+
+    logo ayarlandi
+
+[33mcommit 089c26ffb7d026c230951ef6834482839015bc99[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Mon Dec 18 17:45:39 2023 +0300
+
+    basic oto mail gonderme yapildi
+
+[33mcommit baa4fb96da1139b8e305e83087c0c8a11b7f80b8[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sun Dec 17 17:07:21 2023 +0300
+
+    payment sayfasi yapildi
+
+[33mcommit fb3b49de2c6a146d1ec93c6a7235708932535eee[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Dec 16 20:15:59 2023 +0300
+
+    hesabim kismi ayarlandi
+
+[33mcommit b43457ed30a30f60314bdc647859f552b6e457d5[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Dec 16 18:16:38 2023 +0300
+
+    account dashboard ayarlandi, kiralanan araclar gozukuyor
+
+[33mcommit b13b1d0a03d27a443e62a3531dd39a0ad7824106[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Dec 16 16:29:42 2023 +0300
+
+    index den cars sayfasina yonlendirme yaptim
+
+[33mcommit 8a126773bcf27c2636aebdfd9f813d56104f3fb2[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Dec 16 14:11:24 2023 +0300
+
+    her bir kasa tipinin yaninda araç sayisi yaziyor
+
+[33mcommit 1cad575e046cf91c57a3218084d1a7c411ae1bc5[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Dec 16 14:11:00 2023 +0300
+
+    hakkimizda guncellendi
+
+[33mcommit 09f073a46f25ff385caddb8bac93ead0fe05723f[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 15 17:56:32 2023 +0300
+
+    her kasa tipinin yaninda kac tane araba oldugu yazildi
+
+[33mcommit 56c9803de2e4ff7db6830669d187d5704157a68b[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 15 17:33:27 2023 +0300
+
+    filter guncellendi
+
+[33mcommit 8f308e75ca33f0d210e540c9b2459bad509bc22c[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Dec 15 16:47:01 2023 +0300
+
+    filter yapildi
+
+[33mcommit 31357b1432075e5aaf0449caada0d1bc67db0e58[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Mon Dec 11 16:17:46 2023 +0300
+
+    guncellendi
+
+[33mcommit 14ce760fe379836b0c72c3ae43e6dee04d841350[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Oct 28 18:09:07 2023 +0300
+
+    gecici olarak filter kismi halledildi
+
+[33mcommit 19e5d4585f70de7c6663f5eb4622b9878bc66318[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sun Oct 22 18:31:33 2023 +0300
+
+    login ve register yapildi
+
+[33mcommit a0fa273d85d748093a7da12f255bb34a4a3c8197[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 18 22:58:02 2023 +0300
+
+    index bazi yerler duzeltildi
+
+[33mcommit 7f21ec06ea43f6e3cf8c0a9b3702c929babb8c5a[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 18 22:56:45 2023 +0300
+
+    index bazi yerler duzeltildi
+
+[33mcommit db3ff9e85a375c27a64cbed9ff95da2f8e481452[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 18 22:56:04 2023 +0300
+
+    index bazi yerler duzeltildi
+
+[33mcommit 4bb92ca2cf645fb637a182fc1087b24e1299bdcd[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 18 00:09:08 2023 +0300
+
+    rezervasyon bug giderildi
+
+[33mcommit 464be87cb59b048308c8906b5e96afba1a59b374[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Tue Oct 17 23:39:17 2023 +0300
+
+    models eklemeler oldu ve uuid eklendi
+
+[33mcommit 65bad975b3c89ac64c361c74a3a824044aee9ef7[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Sat Oct 14 00:34:22 2023 +0300
+
+    models duzeltildi. hatalar giderildi
+
+[33mcommit e901b614726953f8bf0f2f9eafd1160c90f4365a[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 11 21:45:57 2023 +0300
+
+    blog detay sayfası eklendi
+
+[33mcommit 68b45acdad67e9aac99363e5427ef533b4976486[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 11 21:30:08 2023 +0300
+
+    blog sayfasi turkcelestirildi
+
+[33mcommit c5d44cd18b56c4359ed30f2323b4990d604cd6e6[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Wed Oct 11 21:05:04 2023 +0300
+
+    header footer vs ayarlandi. bazi kucuk hatalar giderildi
+
+[33mcommit f08d406b3b811d8715dfb437e400ca629fd5d5df[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Mon Oct 9 22:24:37 2023 +0300
+
+    kucuk sorunlar giderildi
+
+[33mcommit 1f305bb70384e61b2896562925796599818955a8[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Mon Oct 2 02:02:01 2023 +0300
+
+    kiralanan tarihler pasif hale getirildi
+
+[33mcommit 6f85dbb4399c6f7b412915e894d7f6f71e50e596[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Sep 22 20:01:24 2023 +0300
+
+    site dinamik hale getirildi
+
+[33mcommit a0c33aec48b62790009a416c7dbe54d6ec53d79d[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Sep 22 14:37:00 2023 +0300
+
+    django eklendi, ayarlamalar yapıldı
+
+[33mcommit 839b61d0ec78bba8e843939339d5bc7a81011225[m
+Author: Ertan <kadimertan78@gmail.com>
+Date:   Fri Sep 22 14:28:00 2023 +0300
+
+    venv oluşturuldu

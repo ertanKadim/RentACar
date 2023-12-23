@@ -21,15 +21,12 @@ def index(request):
 
 
 def cars(request):
-    # Tüm araçları al
     cars = Car.objects.all()
 
-    # Kasa tipine göre filtreleme
     case_type_value = request.GET.getlist('case_type')
     if case_type_value:
         cars = cars.filter(case_type__type__in=case_type_value)
 
-    # Her kasa tipi için araç sayısını hesapla
     case_type_counts_query = Car.objects.values('case_type__type').annotate(count=Count('case_type'))
     case_type_counts = {item['case_type__type']: item['count'] for item in case_type_counts_query}
 
@@ -120,6 +117,7 @@ def payment(request):
     else:
         if 'booking_details' not in request.session:
             return redirect('index')
+        
         form = PaymentForm()
 
     return render(request, 'pages/payment.html', {'form': form})
@@ -179,7 +177,7 @@ def account_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Şifreniz başarıyla güncellendi.')
-            return redirect('account_profile')  # Profil sayfasına yönlendir
+            return redirect('account_profile')
         else:
             messages.error(request, form.errors)
     else:
@@ -201,7 +199,7 @@ def register(request):
             return redirect('user_login')
         else:
             errors = form.errors
-            print(errors)  # Bu satır hataları konsola yazdırır
+            print(errors)
             msg = 'Kayıt başarısız!'
     else:
         form = RegisterForm()
@@ -211,7 +209,6 @@ def user_login(request):
     title = 'Giriş Yap'
     
     if request.user.is_authenticated:
-        # Kullanıcı zaten giriş yapmışsa, istediğiniz sayfaya yönlendirin
         if request.user.is_customer:
             return redirect('index')
         elif request.user.is_admin:

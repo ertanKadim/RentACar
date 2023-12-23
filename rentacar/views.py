@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Car, Booking
+from .models import Car, Booking, Blog
 from django.utils import timezone
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -124,14 +124,22 @@ def payment(request):
 
 def blog(request):
     title = 'Blog'
+    blogs = Blog.objects.all()
+    blog_recent_posts = list(Blog.objects.order_by('-created_at')[:5])
     return render(request, 'pages/blog.html', {
         'title': title,
+        'blogs': blogs,
+        'blog_recent_posts': blog_recent_posts,
     })
 
 def blog_detail(request, slug):
     title = 'Blog'
+    blog = get_object_or_404(Blog, slug=slug)
+    blog_detail_recent_posts = list(Blog.objects.order_by('-created_at')[:5])
     return render(request, 'pages/blog_detail.html', {
         'title': title,
+        'blog': blog,
+        'blog_detail_recent_posts': blog_detail_recent_posts,
     })
 
 def contact(request):

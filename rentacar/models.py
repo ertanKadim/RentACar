@@ -201,3 +201,24 @@ class Booking(models.Model):
         verbose_name_plural = "Rezervasyonlar"
         ordering = ['-id']
 
+
+class Blog(models.Model):
+    title = models.CharField(max_length=120, verbose_name="Başlık")
+    slug = AutoSlugField(populate_from='title', unique=True, verbose_name="Slug")
+    summary = models.TextField(max_length=125, verbose_name="Özet")
+    content = models.TextField(verbose_name="İçerik")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Oluşturulma Tarihi")
+    updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name="Güncellenme Tarihi")
+
+    blog_image1 = models.ImageField(null=True, blank=True, verbose_name="Blog Fotoğraf (600x400)")
+    blog_recent_image = models.ImageField(null=True, blank=True, verbose_name="Sidebar Fotoğraf (400x400)")
+    blog_detail_image = models.ImageField(null=True, blank=True, verbose_name="Blog Detay Fotoğraf (1200x800)")
+
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Blog"
+        verbose_name_plural = "Bloglar"
+        ordering = ['-id']

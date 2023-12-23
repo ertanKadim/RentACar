@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType, User
+from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType, User, Blog
 
+admin.site.site_header = 'Rent A Car Yönetim Paneli'
 
 class CarAdmin(admin.ModelAdmin):
     list_display = ['brand', 'series', 'model', 'year', 'is_available', 'is_damaged', 'plate_number']
@@ -19,6 +20,15 @@ admin.site.register(VehicleType)
 admin.site.register(CaseType)
 
 admin.site.register(User)
+
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
+    list_display_links = ['title', 'created_at', 'updated_at']
+
+    class Meta:
+        model = Blog
+
+admin.site.register(Blog, BlogAdmin)
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['orderid', 'car_with_plate_number', 'start_date', 'return_date']

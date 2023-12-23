@@ -12,7 +12,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-									<h1>Enjoy Best Travel Experience</h1>
+									<h1>{{blog.title}}</h1>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -28,14 +28,10 @@
                         <div class="col-md-8">
                             <div class="blog-read">
 
-                                <img alt="" src="{% static 'images/news/big.jpg' %}" class="img-fullwidth mb30">
+                                <img alt="" src="{{ blog.blog_detail_image.url }}" class="img-fullwidth mb30">
 
                                 <div class="post-text">
-                                    <p>Quis sunt quis do laboris eiusmod in sint dolore sit pariatur consequat commodo aliqua nulla ad dolor aliquip incididunt voluptate est aliquip adipisicing ea cupidatat nostrud incididunt aliquip dolore. Sed minim nisi duis laborum est labore nisi amet elit adipisicing proident do consectetur dolor labore sit nisi ad proident esse ad velit nisi irure reprehenderit ut et dolor labore veniam quis.</p>
-
-                                    <p>Sunt duis laboris ex et quis laborum laborum cillum mollit voluptate culpa consequat ex cupidatat dolor eiusmod proident proident cillum pariatur sint adipisicing in nostrud do dolore consectetur quis incididunt minim consectetur. Exercitation elit proident dolor est id eiusmod dolor dolor incididunt ad voluptate laboris cupidatat est est sint veniam sint officia sint incididunt est sit ut tempor commodo pariatur ut proident et do.</p>
-
-                                    <p>Sed eu in ut sint dolor irure fugiat minim veniam sed ea proident ullamco occaecat irure ut velit eu ullamco fugiat cupidatat dolore fugiat. Lorem ipsum id non deserunt id consequat duis voluptate amet aliqua pariatur laboris officia pariatur veniam velit reprehenderit sint nostrud cupidatat magna eiusmod mollit exercitation pariatur nulla minim laboris dolore aliqua consectetur cillum duis aute consectetur.</p>
+                                    <p>{{ blog.content }}</p>
 
                                 </div>
 
@@ -55,63 +51,9 @@
                                         <div class="comment-info">
                                             <span class="c_name">Merrill Rayos</span>
                                             <span class="c_date id-color">15 January 2020</span>
-                                            <span class="c_reply"><a href="#">Reply</a></span>
                                             <div class="clearfix"></div>
                                         </div>
 
-                                        <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                        <ol>
-                                            <li>
-                                                <div class="avatar">
-                                                    <img src="{% static 'images/misc/avatar-2.jpg' %}" alt=""></div>
-                                                <div class="comment-info">
-                                                    <span class="c_name">Jackqueline Sprang</span>
-                                                    <span class="c_date id-color">15 January 2020</span>
-                                                    <span class="c_reply"><a href="#">Reply</a></span>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                                    explicabo.</div>
-                                            </li>
-                                        </ol>
-                                    </li>
-
-                                    <li>
-                                        <div class="avatar">
-                                            <img src="{% static 'images/misc/avatar-2.jpg' %}" alt=""></div>
-                                        <div class="comment-info">
-                                            <span class="c_name">Sanford Crowley</span>
-                                            <span class="c_date id-color">15 January 2020</span>
-                                            <span class="c_reply"><a href="#">Reply</a></span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                        <ol>
-                                            <li>
-                                                <div class="avatar">
-                                                    <img src="{% static 'images/misc/avatar-2.jpg' %}" alt=""></div>
-                                                <div class="comment-info">
-                                                    <span class="c_name">Lyndon Pocekay</span>
-                                                    <span class="c_date id-color">15 January 2020</span>
-                                                    <span class="c_reply"><a href="#">Reply</a></span>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                                    explicabo.</div>
-                                            </li>
-                                        </ol>
-                                    </li>
-
-                                    <li>
-                                        <div class="avatar">
-                                            <img src="{% static 'images/misc/avatar-2.jpg' %}" alt=""></div>
-                                        <div class="comment-info">
-                                            <span class="c_name">Aleen Crigger</span>
-                                            <span class="c_date id-color">15 January 2020</span>
-                                            <span class="c_reply"><a href="#">Reply</a></span>
-
-                                            <div class="clearfix"></div>
-                                        </div>
                                         <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
                                     </li>
                                 </ol>
@@ -162,45 +104,24 @@
                                 </div>
 
                                 <div class="widget widget-post">
-                                <h4>Recent Posts</h4>
+                                <h4>Son Gönderimler</h4>
                                 <div class="small-border"></div>
                                 <ul class="de-bloglist-type-1">
-                                    <li>
-                                        <div class="d-image">
-                                            <img src="images/news-thumbnail/pic-blog-1.jpg" alt="">
-                                        </div>
-                                        <div class="d-content">
-                                            <a href="#"><h4>Enjoy Best Travel Experience</h4></a>
-                                            <div class="d-date">June 15, 2022</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-image">
-                                            <img src="images/news-thumbnail/pic-blog-2.jpg" alt="">
-                                        </div>
-                                        <div class="d-content">
-                                            <a href="#"><h4>The Future of Car Rent</h4></a>
-                                            <div class="d-date">June 15, 2022</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-image">
-                                            <img src="images/news-thumbnail/pic-blog-3.jpg" alt="">
-                                        </div>
-                                        <div class="d-content">
-                                            <a href="#"><h4>Holiday Tips For Backpacker</h4></a>
-                                            <div class="d-date">June 15, 2022</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-image">
-                                            <img src="images/news-thumbnail/pic-blog-4.jpg" alt="">
-                                        </div>
-                                        <div class="d-content">
-                                            <a href="#"><h4>Travel Destination For Couple</h4></a>
-                                            <div class="d-date">June 15, 2022</div>
-                                        </div>
-                                    </li>
+
+                                    {% for bdrp in blog_detail_recent_posts %}
+
+                                        <li>
+                                            <div class="d-image">
+                                                <img src="{{ bdrp.blog_recent_image.url }}" alt="">
+                                            </div>
+                                            <div class="d-content">
+                                                <a href="#"><h4>{{ bdrp.title }}</h4></a>
+                                                <div class="d-date">{{ bdrp.created_at }}</div>
+                                            </div>
+                                        </li>
+
+                                    {% endfor %}
+                                    
                                 </ul>
                             </div>
 

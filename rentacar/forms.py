@@ -4,9 +4,12 @@ from phonenumber_field.formfields import PhoneNumberField
 from .models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
+from captcha.fields import CaptchaField
+
 # from .models import Car
 
 class LoginForm(forms.Form):
+    captcha = CaptchaField()
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -24,7 +27,9 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
+    captcha = CaptchaField()
     name = forms.CharField(
+        label='Ad Soyad',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control'
@@ -32,6 +37,7 @@ class RegisterForm(UserCreationForm):
         )
     )
     username = forms.CharField(
+        label='Kullanıcı Adı',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control'
@@ -39,6 +45,7 @@ class RegisterForm(UserCreationForm):
         )
     )
     password1 = forms.CharField(
+        label='Şifre',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control'
@@ -46,6 +53,7 @@ class RegisterForm(UserCreationForm):
         )
     )
     password2 = forms.CharField(
+        label='Şifre (Tekrar)',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control'
@@ -53,6 +61,7 @@ class RegisterForm(UserCreationForm):
         )
     )
     email = forms.CharField(
+        label='E-posta',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control'
@@ -60,6 +69,7 @@ class RegisterForm(UserCreationForm):
         )
     )
     phone = PhoneNumberField(
+        label='Telefon (+90XXXXXXXXXX)',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control'
@@ -69,7 +79,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['name', 'username', 'email', 'password1', 'password2', 'phone', 'captcha']
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
@@ -103,6 +113,7 @@ class PaymentForm(forms.Form):
         if len(card_cvv) != 3 or not card_cvv.isdigit():
             raise ValidationError("CVV kodu 3 haneli bir sayı olmalıdır.")
         return card_cvv
+    
 # from .models import Car
 
 # class CarRentalForm(forms.ModelForm):

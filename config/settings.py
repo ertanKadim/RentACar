@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'rentacar',
 ]
 
@@ -134,6 +135,10 @@ EMAIL_PORT = 587                            # SMTP sunucusunun portu, genellikle
 EMAIL_USE_TLS = True                        # Güvenli bağlantı için TLS kullanımı
 EMAIL_HOST_USER = 'kadimertan78@gmail.com'  # E-posta adresiniz
 EMAIL_HOST_PASSWORD = 'fuuq ujut vnpt agtu' # E-posta şifreniz
+
+
+RECAPTCHA_PUBLIC_KEY = '6LfnokIpAAAAAAvMFRv2U4_alrtBvJ-XYViSJBy_'
+RECAPTCHA_PRIVATE_KEY = '6LfnokIpAAAAANQaBsP5WSfV9xCD6Rew9EY6Jxf5'
 
 
 # Default primary key field type

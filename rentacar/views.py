@@ -9,14 +9,18 @@ from .forms import LoginForm, RegisterForm, UserPasswordChangeForm, PaymentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.core.mail import send_mail
+
+
 def index(request):
     title = 'Anasayfa'
 
     cars = list(Car.objects.order_by('-created_at')[:5])
+    blogs = list(Blog.objects.order_by('-created_at')[:3])
 
     return render(request, 'pages/index.html', {
         'title': title,
         'cars': cars,
+        'blogs': blogs,
     })
 
 

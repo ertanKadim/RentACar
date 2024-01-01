@@ -9,6 +9,7 @@ from .forms import LoginForm, RegisterForm, UserPasswordChangeForm, PaymentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.core.mail import send_mail
+from decimal import Decimal
 
 
 def index(request):
@@ -80,6 +81,14 @@ def car_detail(request, slug):
             'dropoff_location': dropoff_location
         }
 
+        start_date_obj = datetime.strptime(start_date, '%d %B %Y')
+        return_date_obj = datetime.strptime(return_date, '%d %B %Y')
+
+        rental_days = (return_date_obj - start_date_obj).days + 1
+        total_price = rental_days * car.price_per_day
+
+        request.session['total_price'] = str(total_price)
+
         request.session['payment_access_allowed'] = True
         return redirect('payment')
 
@@ -87,6 +96,7 @@ def car_detail(request, slug):
         'car': car,
         'now': timezone.now(),
         'booked_dates_json': json.dumps(booked_dates_list),
+        'total_price': total_price if 'total_price' in locals() else None,
         'title': title,
     })
 
@@ -94,6 +104,8 @@ def car_detail(request, slug):
 def payment(request):
     # if request.method == 'GET' and not request.session.pop('payment_access_allowed', False):
     #     return redirect('index')
+    total_price = request.session.get('total_price', '0')
+    total_price_decimal = Decimal(total_price)
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
@@ -124,7 +136,11 @@ def payment(request):
         
         form = PaymentForm()
 
-    return render(request, 'pages/payment.html', {'form': form})
+    return render(request, 'pages/payment.html', {
+        'form': form,
+        'total_price': total_price,
+        'total_price_decimal': total_price_decimal,
+    })
 
 def blog(request):
     title = 'Blog'

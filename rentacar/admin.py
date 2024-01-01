@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType, User, Blog
+from .models import Car, Booking, Brand, Series, Model, FuelType, TransmissionType, CaseType, VehicleType, User, Blog, Comment
 
 admin.site.site_header = 'Rent A Car Yönetim Paneli'
 
@@ -18,6 +18,7 @@ admin.site.register(FuelType)
 admin.site.register(TransmissionType)
 admin.site.register(VehicleType)
 admin.site.register(CaseType)
+admin.site.register(Comment)
 
 admin.site.register(User)
 

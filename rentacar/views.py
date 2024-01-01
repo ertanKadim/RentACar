@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Car, Booking, Blog
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
+from .models import Car, Booking, Blog, Comment
 from django.utils import timezone
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -136,9 +136,22 @@ def blog_detail(request, slug):
     title = 'Blog'
     blog = get_object_or_404(Blog, slug=slug)
     blog_detail_recent_posts = list(Blog.objects.order_by('-created_at')[:5])
+
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            comment_content = request.POST.get('comment')
+            if comment_content:
+                Comment.objects.create(blog=blog, user=request.user, content=comment_content)
+                return HttpResponseRedirect(request.path_info)
+        else:
+            return redirect('user_login')
+
+    comments = Comment.objects.filter(blog=blog).order_by('-created_at')
+
     return render(request, 'pages/blog_detail.html', {
         'title': title,
         'blog': blog,
+        'comments': comments,
         'blog_detail_recent_posts': blog_detail_recent_posts,
     })
 

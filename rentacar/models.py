@@ -222,3 +222,17 @@ class Blog(models.Model):
         verbose_name = "Blog"
         verbose_name_plural = "Bloglar"
         ordering = ['-id']
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments', verbose_name="Blog Yorumları")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.blog.title}"
+    
+    class Meta:
+        verbose_name = "Yorum"
+        verbose_name_plural = "Yorumlar"
+        ordering = ['-id']

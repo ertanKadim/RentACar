@@ -40,46 +40,42 @@
                             <div class="spacer-single"></div>
 
                             <div id="blog-comment">
-                                <h4>Comments (5)</h4>
+                                <h4>Yorumlar ({{comments.count}})</h4>
 
                                 <div class="spacer-half"></div>
 
                                 <ol>
-                                    <li>
-                                        <div class="avatar">
-                                            <img src="{% static 'images/misc/avatar-2.jpg' %}" alt=""></div>
-                                        <div class="comment-info">
-                                            <span class="c_name">Merrill Rayos</span>
-                                            <span class="c_date id-color">15 January 2020</span>
-                                            <div class="clearfix"></div>
-                                        </div>
-
-                                        <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                    </li>
+                                    {% for comment in comments %}
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="{% static 'images/misc/avatar-2.jpg' %}" alt="">
+                                            </div>
+                                            <div class="comment-info">
+                                                <span class="c_name">{{ comment.user.username }}</span>
+                                                <span class="c_date id-color">{{ comment.created_at|date:"d F Y" }}</span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                
+                                            <div class="comment">{{ comment.content }}</div>
+                                        </li>
+                                    {% empty %}
+                                        <li>Henüz Yorum Yok</li>
+                                    {% endfor %}
                                 </ol>
+                                
+                                
 
                                 <div class="spacer-single"></div>
 
+                                <!-- Comment Form -->
                                 <div id="comment-form-wrapper">
-                                    <h4>Leave a Comment</h4>
+                                    <h4>Yorum Bırak</h4>
                                     <div class="comment_form_holder">
-                                        <form id="contact_form" name="form1" class="form-border" method="post" action="#">
-
-                                            <label>Name</label>
-                                            <input type="text" name="name" id="name" class="form-control" />
-
-                                            <label>Email <span class="req">*</span></label>
-                                            <input type="text" name="email" id="email" class="form-control" />
-                                            <div id="error_email" class="error">Please check your email</div>
-
-                                            <label>Message <span class="req">*</span></label>
-                                            <textarea cols="10" rows="10" name="message" id="message" class="form-control"></textarea>
-                                            <div id="error_message" class="error">Please check your message</div>
-                                            <div id="mail_success" class="success">Thank you. Your message has been sent.</div>
-                                            <div id="mail_failed" class="error">Error, email not sent</div>
-
-                                            <p id="btnsubmit">
-                                                <input type="submit" id="send" value="Send" class="btn-main" /></p>
+                                        <form method="post" action="{% url 'blog_detail' blog.slug %}">
+                                            {% csrf_token %}
+                                            <textarea name="comment" cols="40" rows="4" class="form-control" placeholder="Yorumun"></textarea>
+                                            <br>
+                                            <input type="submit" value="Gönder" class="btn btn-primary">
                                         </form>
                                     </div>
                                 </div>

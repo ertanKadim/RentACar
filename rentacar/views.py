@@ -113,7 +113,6 @@ def payment(request):
             if booking_details:
                 start_datetime = datetime.strptime(f"{booking_details['start_date']} {booking_details['start_time']}", '%d %B %Y %H:%M')
                 return_datetime = datetime.strptime(f"{booking_details['return_date']} {booking_details['return_time']}", '%d %B %Y %H:%M')
-
                 Booking.objects.create(
                     user=request.user,
                     car_id=booking_details['car_id'],

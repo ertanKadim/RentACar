@@ -139,7 +139,7 @@ EMAIL_HOST_PASSWORD = 'fuuq ujut vnpt agtu' # E-posta şifreniz
 
 RECAPTCHA_PUBLIC_KEY = '6LfnokIpAAAAAAvMFRv2U4_alrtBvJ-XYViSJBy_'
 RECAPTCHA_PRIVATE_KEY = '6LfnokIpAAAAANQaBsP5WSfV9xCD6Rew9EY6Jxf5'
-
+CAPTCHA_FONT_SIZE= 35
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

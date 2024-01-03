@@ -10,6 +10,7 @@ from captcha.fields import CaptchaField
 
 class LoginForm(forms.Form):
     captcha = CaptchaField()
+    
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={

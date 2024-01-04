@@ -167,6 +167,11 @@ class Booking(models.Model):
     pickup_location = models.CharField(blank=True, max_length=255, verbose_name="Alış Yeri")
     dropoff_location = models.CharField(blank=True, max_length=255, verbose_name="Teslim Yeri")
     orderid = models.CharField(max_length=9, unique=True, verbose_name="Sipariş ID")
+    STATUS_CHOICES = (
+        ('delivered', 'Teslim Edildi'),
+        ('in_renting', 'Kiralamada'),
+    )
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='not_delivered', verbose_name='Durum')
 
     def save(self, *args, **kwargs):
         if not self.orderid:

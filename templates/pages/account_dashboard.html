@@ -6,7 +6,7 @@
 <!-- content begin -->
 <div class="no-bottom no-top zebra" id="content">
     <div id="top"></div>
-    
+
     <!-- section begin -->
     <section id="subheader" class="jarallax text-light">
         <img src="{% static 'images/background/14.jpg' %}" class="jarallax-img" alt="">
@@ -34,14 +34,15 @@
                             </div>
                             <div class="profile_name">
                                 <h4>
-                                  {{ user.get_full_name|default:user.username }} 
-                                  <span class="profile_username text-gray">{{ user.email }}</span>
+                                    {{ user.get_full_name|default:user.username }}
+                                    <span class="profile_username text-gray">{{ user.email }}</span>
                                 </h4>
                             </div>
                         </div>
                         <div class="spacer-20"></div>
                         <ul class="menu-col">
-                            <li><a href="{% url 'account_dashboard' %}" class="active"><i class="fa fa-home"></i>Dashboard</a></li>
+                            <li><a href="{% url 'account_dashboard' %}" class="active"><i
+                                        class="fa fa-home"></i>Dashboard</a></li>
                             <li><a href="{% url 'account_profile' %}"><i class="fa fa-user"></i>Profil</a></li>
                             <li><a href="{% url 'user_logout' %}"><i class="fa fa-sign-out"></i>Çıkış Yap</a></li>
                         </ul>
@@ -49,38 +50,44 @@
                 </div>
 
                 <div class="col-lg-9">
-                  <div class="card p-4 rounded-5 mb25">
-                      <h4>Kiraladığım Araçlar</h4>
-                      <table class="table de-table">
-                          <thead>
-                              <tr>
-                                  <th scope="col">Sipariş ID</th>
-                                  <th scope="col">Araç</th>
-                                  <th scope="col">Alış Yeriniz</th>
-                                  <th scope="col">Alış Tarihi</th>
-                                  <th scope="col">İade Yeriniz</th>
-                                  <th scope="col">İade Tarihi</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              {% for booking in bookings %}
-                              <tr>
-                                  <td>{{ booking.orderid }}</td>
-                                  <td>{{ booking.car.brand }} {{ booking.car.series }}</td>
-                                  <td>{{ booking.pickup_location }}</td>
-                                  <td>{{ booking.start_date }} {{ booking.start_time }}</td>
-                                  <td>{{ booking.dropoff_location }}</td>
-                                  <td>{{ booking.return_date }} {{ booking.return_time }}</td>
-                              </tr>
-                              {% empty %}
-                              <tr>
-                                  <td colspan="6">Henüz kiralık bir aracınız yok.</td>
-                              </tr>
-                              {% endfor %}
-                          </tbody>
-                      </table>
-                  </div>
-              </div>              
+                    <div class="card p-4 rounded-5 mb25">
+                        <h4>Kiraladığım Araçlar</h4>
+                        <table class="table de-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sipariş ID</th>
+                                    <th scope="col">Araç</th>
+                                    <th scope="col">Alış Yeriniz</th>
+                                    <th scope="col">Alış Tarihi</th>
+                                    <th scope="col">İade Yeriniz</th>
+                                    <th scope="col">İade Tarihi</th>
+                                    <th scope="col">Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for booking in bookings %}
+                                <tr>
+                                    <td>{{ booking.orderid }}</td>
+                                    <td>{{ booking.car.brand }} {{ booking.car.series }}</td>
+                                    <td>{{ booking.pickup_location }}</td>
+                                    <td>{{ booking.start_date }} {{ booking.start_time }}</td>
+                                    <td>{{ booking.dropoff_location }}</td>
+                                    <td>{{ booking.return_date }} {{ booking.return_time }}</td>
+                                    {% if booking.status == 'delivered' %}
+                                        <td style="color: green;">{{booking.get_status_display}}</td>
+                                    {% else %}
+                                        <td style="color: red;">{{booking.get_status_display}}</td>
+                                    {% endif %}
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6">Henüz kiralık bir aracınız yok.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

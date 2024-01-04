@@ -32,8 +32,8 @@ class BlogAdmin(admin.ModelAdmin):
 admin.site.register(Blog, BlogAdmin)
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['orderid', 'car_with_plate_number', 'start_date', 'return_date']
-    list_display_links = ['orderid', 'car_with_plate_number', 'start_date', 'return_date']
+    list_display = ['orderid', 'car_with_plate_number', 'start_date', 'return_date', 'status']
+    list_display_links = ['orderid', 'car_with_plate_number', 'start_date', 'return_date', 'status']
 
     def car_with_plate_number(self, obj):
         return f"{obj.car} - {obj.car.plate_number}"
